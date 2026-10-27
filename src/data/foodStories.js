@@ -1,0 +1,2 @@
+export const foodStories=[{number:'01',title:'A recipe is an inheritance.',text:'A handful of spice. A practised gesture. A recipe passed around a family table. Our food heritage begins with the people who keep cooking it.'},{number:'02',title:'Many kitchens. One table.',text:'Across Maharashtra, food brings people together. KANAGEE makes space for discovering these diverse culinary traditions.'}];
+

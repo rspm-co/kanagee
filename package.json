@@ -1,0 +1,2 @@
+{"name":"kanagee","version":"1.0.0","type":"module","scripts":{"dev":"vite --host 127.0.0.1","build":"vite build","test":"node --test src/data/content.test.js"},"dependencies":{"react":"^19.0.0","react-dom":"^19.0.0","gsap":"^3.12.7","lucide-react":"^0.468.0"},"devDependencies":{"vite":"^6.1.0"}}
+

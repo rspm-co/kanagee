@@ -1,0 +1,1 @@
+export const womenStories=[{title:'The hands that hold our heritage.',text:'Women-led kitchens, home chefs and self-help groups are central to the festival’s vision. A space to celebrate their knowledge, discover their food and support rural culinary enterprise.',participant:null}];

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+
+.env*
+!.env.example
+server/config.php
+server/kanagee-config.php
