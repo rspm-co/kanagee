@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {Bell, Check, X} from 'lucide-react';
+import {saveTicketInterest} from '../data/ticketInterest.js';
 
-const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL;
+const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest.php';
 
 export default function TicketInterest(){
   const dialog=useRef(null);
@@ -17,15 +18,7 @@ export default function TicketInterest(){
     setError('');setStatus('submitting');
     try{
       const record={mobile:`+91${digits}`,consent:true,purpose:'ticket-launch',createdAt:new Date().toISOString()};
-      if(signupEndpoint){
-        const response=await fetch(signupEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(record)});
-        if(!response.ok)throw new Error('signup');
-        const result=await response.json();
-        if(result.ok!==true)throw new Error('signup');
-      }else{
-        // Local preview only. A successful server response is required in connected mode.
-        localStorage.setItem('kanagee-ticket-interest',JSON.stringify(record));
-      }
+      await saveTicketInterest(signupEndpoint,record);
       setStatus('success');
     }catch{setError('We could not save your interest. Please try again.');setStatus('idle')}
   }
@@ -38,7 +31,6 @@ export default function TicketInterest(){
         <span className="eyebrow">THANK YOU FOR YOUR INTEREST</span>
         <h2 id="interest-title">You’re on the list!</h2>
         <p id="interest-description">As soon as ticket sales open, we’ll notify you on your mobile number.</p>
-        {!signupEndpoint&&<p className="interest-preview">Preview only: your number is saved on this device. Mobile notifications are not connected yet.</p>}
         <button type="button" className="button interest-submit" onClick={close} autoFocus>Done</button>
       </div>:<>
         <span className="eyebrow">BE FIRST TO KNOW</span>
@@ -49,7 +41,6 @@ export default function TicketInterest(){
           <div className="interest-phone"><span aria-hidden="true">+91</span><input id="interest-mobile" name="tel" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Enter mobile number" autoFocus required maxLength={18} value={mobile} onChange={e=>{setMobile(e.target.value);setError('')}} aria-invalid={!!error} aria-describedby={error?'interest-error':'interest-consent'} disabled={status==='submitting'}/></div>
           {error&&<p className="interest-error" id="interest-error" role="alert">{error}</p>}
           <p id="interest-consent" className="interest-consent">By selecting “Notify me”, you agree to receive a ticket-opening update from KANAGEE.</p>
-          {!signupEndpoint&&<p className="interest-preview">Preview mode · saved on this device only. Notifications are not connected yet.</p>}
           <button type="submit" className="button interest-submit" disabled={status==='submitting'}>{status==='submitting'?'Saving…':'Notify me'}<Bell size={16}/></button>
         </form>
       </>}
