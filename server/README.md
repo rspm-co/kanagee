@@ -32,3 +32,5 @@ The endpoint validates mobile numbers and consent, uses parameterized inserts, l
 SMS/WhatsApp delivery remains a separate future integration. Stored rows begin with pending notification status. No messages are sent by this app yet.
 
 Hostinger reference: https://www.hostinger.com/support/connecting-a-hostinger-mysql-database-to-a-node-js-application/
+
+If deployment logs say `Entry file: none` or `Application type: not specified`, update Hostinger's framework/application selection to a server-side Node.js app and set entry file `server.js`. Publishing only the static frontend will not run the signup API. Vite is deliberately a production dependency because Hostinger may omit development dependencies when NODE_ENV=production is set during installation.
