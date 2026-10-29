@@ -36,3 +36,11 @@ test('built frontend is served and unknown API routes return JSON errors',async(
     const response=await fetch(base+'/api/unknown');assert.equal(response.status,404);assert.deepEqual(await response.json(),{ok:false});
   });
 });
+
+test('about page opens directly and on refresh without a server 404',async()=>{
+  await withServer(null,async base=>{
+    for(const path of ['/about','/about/']){
+      const response=await fetch(base+path);assert.equal(response.status,200);assert.match(await response.text(),/<div id="root"><\/div>/);
+    }
+  });
+});
