@@ -23,6 +23,6 @@ For Hostinger Node.js Web Apps, the Node server, MySQL table schema, and environ
 ## Organisers and Chairman's message
 `src/config/organiser.js` holds the supplied organiser credit: Ladachi Kulfi — R S Papal Group. The organiser section and Marathi “Our intent” section appear on the dedicated About KANAGEE page and describe the festival's intentions, without claiming certifications or unverified achievements.
 
-When ready, add the Chairman's approved name, message and photo path to `organiser.chairman`. Place the image in `public/` and use its root path (for example `/chairman.jpg`). The message and photo appear below the organiser credit only when all three fields are filled. No placeholder portrait or invented message is published.
+The About page includes the supplied Chairman portrait and seven festival-vision points from the organiser. These are presented as the Chairman’s vision, without an invented personal quotation or name. Edit `organiser.chairman` in `src/config/organiser.js` to add his approved name or personal message later. The supplied “Maharashtra’s First Food Festival” and “100% Preservative-Free” positioning is organiser-provided copy.
 
 The organiser credit, festival intentions and future Chairman's message are grouped on the dedicated `/about/` page (“About KANAGEE”), linked from both the header and footer. They no longer appear as full sections on the homepage. The build includes `about/index.html` so direct links and refreshes resolve on the deployed server.

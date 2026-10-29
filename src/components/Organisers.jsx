@@ -24,7 +24,7 @@ export function OurIntent(){
 
 export function OrganisedBy(){
   const chairman=organiser.chairman;
-  const showChairman=chairman.name.trim()&&chairman.photo.trim()&&chairman.message.trim();
+  const showChairman=chairman.photo.trim()&&(chairman.vision?.length||chairman.message.trim());
   return <section id="organisers" className="organisers section" aria-labelledby="organiser-title">
     <div className="organiser-intro reveal">
       <span className="eyebrow">THE PEOPLE BEHIND KANAGEE</span>
@@ -37,9 +37,18 @@ export function OrganisedBy(){
       <span className="organiser-group">{organiser.group}</span>
       <p lang="mr">महाराष्ट्राच्या खाद्यपरंपरेचा उत्सव साजरा करण्यासाठी एकत्र.</p>
     </div>
-    {showChairman&&<article className="chairman-message" aria-labelledby="chairman-heading">
-      <img src={chairman.photo} alt={chairman.name} loading="lazy" decoding="async" width="400" height="500"/>
-      <div><span className="eyebrow">A NOTE FROM OUR CHAIRMAN</span><h3 id="chairman-heading">{chairman.name}</h3><p className="chairman-role">{chairman.designation} · {organiser.group}</p><p className="chairman-copy">{chairman.message}</p></div>
+    {showChairman&&<article className="chairman-vision" aria-labelledby="chairman-heading">
+      <figure className="chairman-portrait">
+        <img src={chairman.photo} alt={chairman.name||'Chairman of R S Papal Group'} loading="lazy" decoding="async" width="400" height="400"/>
+        <figcaption>{chairman.name&&<strong>{chairman.name}</strong>}<span>{chairman.designation} · {organiser.group}</span></figcaption>
+      </figure>
+      <div className="chairman-vision-content">
+        <span className="eyebrow">THE VISION BEHIND OUR CELEBRATION</span>
+        <h2 id="chairman-heading">{chairman.visionTitle}</h2>
+        <p className="chairman-introduction">{chairman.introduction}</p>
+        {chairman.message&&<p className="chairman-copy">{chairman.message}</p>}
+        <ul className="vision-points">{chairman.vision.map(point=><li key={point.title}><h3>{point.title}</h3><p>{point.text}</p></li>)}</ul>
+      </div>
     </article>}
   </section>
 }
