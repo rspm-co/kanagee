@@ -8,7 +8,7 @@ React + Vite festival website. Run `npm install`, `npm run dev`; production: `np
 - Pune, Mumbai and Nagpur are shown for geographic orientation. No district boundaries or dish associations are invented.
 - Palette: vermilion #ED1922, maroon #922420, warm cream #F7E7A6, ivory #FFF9E6. Brand name: KANAGEE. Major editorial phrases are in Marathi.
 - Transparent logo: `public/kanagee-logo-transparent.png`, made using the built-in image editor. Prompt: Remove only the outer pale grey/white background of the supplied badge, preserve the original Marathi lettering, shape, internal whites and colours, and output a transparent PNG. Original JPEG is preserved.
-- Thali and textile artwork are editorial illustrations, not actual event photographs. Planned experiences remain marked pending programme confirmation. Empty sponsor data stays hidden.
+- The “More than a meal” section uses the supplied seafood photograph (`public/seafood-platter.png`); it is not labelled as an event photograph. Textile artwork is an editorial illustration. Planned experiences remain marked pending programme confirmation. Empty sponsor data stays hidden.
 - Countdown uses IST calendar dates, from 3 December inclusive to 7 December exclusive. Daily opening times are pending.
 - GSAP entrances, scroll reveals, map drawing and desktop parallax are scoped and cleaned up. Reduced motion disables these and the Pune marker pulse. No scroll pinning or payment processing.
 - Google Fonts are optional, with system fallbacks.
