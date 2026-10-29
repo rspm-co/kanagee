@@ -5,15 +5,22 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build && node scripts/prepare-deployment.mjs",
-    "test": "node --test src/data/*.test.js"
+    "test": "node --test src/data/*.test.js server/*.test.js",
+    "start": "node server.js"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
     "gsap": "^3.12.7",
-    "lucide-react": "^0.468.0"
+    "lucide-react": "^0.468.0",
+    "mysql2": "^3.24.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "vite": "^6.1.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

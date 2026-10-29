@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Bell, Check, X} from 'lucide-react';
 import {saveTicketInterest} from '../data/ticketInterest.js';
 
-const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest.php';
+const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest';
 
 export default function TicketInterest(){
   const dialog=useRef(null);

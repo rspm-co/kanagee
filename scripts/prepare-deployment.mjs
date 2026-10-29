@@ -1,5 +1,6 @@
 import {mkdir,copyFile} from 'node:fs/promises';
-// Package the PHP endpoint with the frontend for PHP-enabled hosting.
-await mkdir(new URL('../dist/api/',import.meta.url),{recursive:true});
-await copyFile(new URL('../server/ticket-interest.php',import.meta.url),new URL('../dist/api/ticket-interest.php',import.meta.url));
-console.log('Deployment prepared: dist/ includes the frontend and PHP signup endpoint.');
+await mkdir(new URL('../dist/server/',import.meta.url),{recursive:true});
+for(const file of ['server.js','server/app.js','package.json','package-lock.json']){
+  await copyFile(new URL('../'+file,import.meta.url),new URL('../dist/'+file,import.meta.url));
+}
+console.log('Deployment prepared: dist/ includes the frontend and Node.js server.');
