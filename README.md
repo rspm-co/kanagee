@@ -19,3 +19,8 @@ The hero and ticket section open an accessible mobile-number popup. Indian numbe
 There is no local-storage or preview fallback. Success requires an HTTP success response with JSON `{ "ok": true }` from the server. Unavailable endpoints, invalid responses, and timeouts show an error and allow retry.
 
 For Hostinger Node.js Web Apps, the Node server, MySQL table schema, and environment-variable deployment instructions are provided in `server/README.md`. Run `npm start` after building. The connected endpoint must return JSON `{ "ok": true }` after successful storage.
+
+## Organisers and Chairman's message
+`src/config/organiser.js` holds the supplied organiser credit: Ladachi Kulfi — R S Papal Group. The organiser section appears before the countdown. A separate Marathi “Our intent” section follows food heritage and describes the festival's intentions, without claiming certifications or unverified achievements.
+
+When ready, add the Chairman's approved name, message and photo path to `organiser.chairman`. Place the image in `public/` and use its root path (for example `/chairman.jpg`). The message and photo appear below the organiser credit only when all three fields are filled. No placeholder portrait or invented message is published.
