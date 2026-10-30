@@ -1,18 +1,33 @@
-import React, {useId, useRef, useState} from 'react';
-import {ArrowUpRight, Bell, Check, MapPin, X, Zap} from 'lucide-react';
+import React, {useEffect, useId, useRef, useState} from 'react';
+import {ArrowUpRight, Bell, Check, MapPin, X} from 'lucide-react';
 import {saveTicketInterest} from '../data/ticketInterest.js';
 import {event} from '../config/event';
 
+let popupShownThisVisit=false;
+const popupSessionKey='kanagee-ticket-popup-shown';
 const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest';
 
-export default function TicketInterest({label='We are interested',variant='default',onOpen}){
+export default function TicketInterest({label='We are interested',variant='default',onOpen,autoOpen=false}){
   const id=useId();
   const titleId=id+'-title',descriptionId=id+'-description',mobileId=id+'-mobile',errorId=id+'-error',consentId=id+'-consent',dialogId=id+'-dialog';
   const dialog=useRef(null);
   const [mobile,setMobile]=useState('');
   const [status,setStatus]=useState('idle');
   const [error,setError]=useState('');
-  function open(){setMobile('');setStatus('idle');setError('');onOpen?.();dialog.current.showModal()}
+  function open(){if(dialog.current.open)return;setMobile('');setStatus('idle');setError('');onOpen?.();dialog.current.showModal();popupShownThisVisit=true;try{sessionStorage.setItem(popupSessionKey,'true')}catch{}}
+  useEffect(()=>{
+    if(!autoOpen)return;
+    let timer;
+    function prompt(){
+      if(popupShownThisVisit)return;
+      try{if(sessionStorage.getItem(popupSessionKey)==='true')return}catch{}
+      const typing=document.activeElement?.matches('input,textarea,[contenteditable="true"]');
+      if(document.hidden||document.querySelector('dialog[open]')||typing){timer=setTimeout(prompt,2500);return}
+      open();
+    }
+    timer=setTimeout(prompt,10000);
+    return()=>clearTimeout(timer);
+  },[autoOpen]);
   function close(){if(status!=='submitting')dialog.current.close()}
   async function submit(e){
     e.preventDefault();
@@ -26,7 +41,7 @@ export default function TicketInterest({label='We are interested',variant='defau
     }catch{setError('We could not save your interest. Please try again.');setStatus('idle')}
   }
   return <>
-    <button type="button" className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'} onClick={open} aria-haspopup="dialog" aria-controls={dialogId}>{variant!=='nav'&&<Bell size={16}/>}<span>{label}</span>{variant==='nav'&&<ArrowUpRight size={14}/>}<span className="ticket-lightning" aria-hidden="true"><Zap size={12}/></span></button>
+    <button type="button" className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'} onClick={open} aria-haspopup="dialog" aria-controls={dialogId}>{variant!=='nav'&&<Bell size={16}/>}<span>{label}</span>{variant==='nav'&&<ArrowUpRight size={14}/>}</button>
     <dialog ref={dialog} id={dialogId} className="interest-dialog" aria-labelledby={titleId} aria-describedby={descriptionId} onCancel={e=>{if(status==='submitting')e.preventDefault()}} onClick={e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()}}}>
       <button type="button" className="interest-close" aria-label="Close popup" onClick={close} disabled={status==='submitting'}><X size={20}/></button>
       <span className="interest-icon" aria-hidden="true">{status==='success'?<Check size={24}/>:<Bell size={24}/>}</span>
