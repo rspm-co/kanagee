@@ -32,3 +32,6 @@ The private `/admin/` page displays interested visitors from MySQL. Set `ADMIN_U
 
 ## Website motion
 The photo animation layer is in `src/useSiteMotion.js`, with CSS floating food images, gentle plate rotation, photo hover effects, scroll reveals, card motion and a scroll-progress bar. The pause button stores only the visitor's animation preference locally. Reduced-motion preferences bypass motion, and floating images pause outside the viewport. Admin screens do not use festival scroll animations. The new Experiences thali is a background-removed edit of the supplied photograph (`public/experience-thali-cutout.png`), not an event photograph.
+
+## Food gallery
+The homepage Gallery follows Experiences and offers All, Thalis and Seafood filters plus a native-dialog photo viewer with arrow-key navigation and Escape-to-close. Photo records and captions are in `src/data/gallery.js`; images reuse the supplied food photos and edited cutouts. They are presented as inspiration, not a confirmed festival menu. Gallery entrance motion honours both the visitor's pause setting and reduced-motion preference.
