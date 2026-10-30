@@ -6,6 +6,7 @@ import {galleryFilters,galleryPhotos} from '../data/gallery';
 
 export default function FoodGallery({paused=false}){
  const [filter,setFilter]=useState('All');const [selected,setSelected]=useState(null);
+ const [slider,setSlider]=useState({previous:false,next:false});
  const dialog=useRef(null);const grid=useRef(null);
  const photos=galleryPhotos.filter(photo=>filter==='All'||photo.tags.includes(filter));
  const current=galleryPhotos.find(photo=>photo.id===selected);
@@ -15,14 +16,22 @@ export default function FoodGallery({paused=false}){
   if(!paused)media.add('(prefers-reduced-motion: no-preference)',()=>gsap.fromTo(grid.current.children,{opacity:0,y:22},{opacity:1,y:0,stagger:.09,duration:.55,ease:'power2.out',scrollTrigger:{trigger:grid.current,start:'top 92%',once:true},clearProps:'all'}));
   ScrollTrigger.refresh();return()=>media.revert();
  },[filter,paused]);
+ useEffect(()=>{
+  const track=grid.current;
+  track.scrollLeft=0;
+  const update=()=>setSlider({previous:track.scrollLeft>2,next:track.scrollLeft+track.clientWidth<track.scrollWidth-2});
+  const observer=new ResizeObserver(update);observer.observe(track);track.addEventListener('scroll',update,{passive:true});update();
+  return()=>{observer.disconnect();track.removeEventListener('scroll',update)};
+ },[filter]);
+ function slide(direction){const track=grid.current;const width=track.firstElementChild?.getBoundingClientRect().width||track.clientWidth;const gap=parseFloat(getComputedStyle(track).columnGap)||0;track.scrollBy({left:direction*(width+gap),behavior:paused||window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
  function open(photo){setSelected(photo.id);dialog.current.showModal()}
  function step(direction){const next=(position+direction+photos.length)%photos.length;setSelected(photos[next].id)}
  return <section className="food-gallery section" id="gallery" aria-labelledby="gallery-title">
   <div className="section-top"><span className="eyebrow">A FEAST FOR YOUR EYES</span><span lang="mr">आधी नजरेने, मग चवीने.</span></div>
   <div className="gallery-intro"><div><h2 id="gallery-title" className="marathi-title">What are you craving?</h2><p>Big flavours. Beautiful plates. A little taste of Maharashtra.</p></div><span className="gallery-photo-note">FOOD GALLERY</span></div>
-  <div className="gallery-filters" role="group" aria-label="Filter food photos">{galleryFilters.map(label=><button key={label} type="button" aria-pressed={filter===label} onClick={()=>setFilter(label)}>{label}<span>{label==='All'?galleryPhotos.length:galleryPhotos.filter(photo=>photo.tags.includes(label)).length}</span></button>)}</div>
-  <p className="gallery-count" role="status" aria-live="polite">{photos.length} photos · Select a plate to take a closer look.</p>
-  <div className="food-gallery-grid" ref={grid}>{photos.map(photo=><button type="button" className="food-gallery-card" key={photo.id} onClick={()=>open(photo)} aria-label={'View '+photo.title+' photo'}>
+  <div className="gallery-toolbar"><div className="gallery-filters" role="group" aria-label="Filter food photos">{galleryFilters.map(label=><button key={label} type="button" aria-pressed={filter===label} onClick={()=>setFilter(label)}>{label}<span>{label==='All'?galleryPhotos.length:galleryPhotos.filter(photo=>photo.tags.includes(label)).length}</span></button>)}</div><div className="gallery-slider-controls" role="group" aria-label="Gallery slider controls"><button type="button" className="gallery-viewer-arrow" onClick={()=>slide(-1)} disabled={!slider.previous} aria-label="Slide gallery left" aria-controls="food-gallery-slider"><ArrowLeft size={19}/></button><button type="button" className="gallery-viewer-arrow" onClick={()=>slide(1)} disabled={!slider.next} aria-label="Slide gallery right" aria-controls="food-gallery-slider"><ArrowRight size={19}/></button></div></div>
+  <p className="gallery-count" role="status" aria-live="polite">{photos.length} photos · Swipe or use the arrows. Select a plate to enlarge.</p>
+  <div className="food-gallery-grid" id="food-gallery-slider" ref={grid} role="region" aria-label="Food photo slider" tabIndex={0} onKeyDown={e=>{if(e.key==='ArrowRight'){e.preventDefault();slide(1)}if(e.key==='ArrowLeft'){e.preventDefault();slide(-1)}}}>{photos.map(photo=><button type="button" className="food-gallery-card" key={photo.id} onClick={()=>open(photo)} aria-label={'View '+photo.title+' photo'}>
     <span className={'gallery-food-image '+(photo.cutout?'gallery-cutout':'')}><img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async"/><span className="gallery-expand" aria-hidden="true"><Expand size={17}/></span><span className="gallery-food-tag">{photo.tags.join(' · ')}</span></span>
     <span className="gallery-food-caption"><span className="gallery-food-mr" lang="mr">{photo.mr}</span><span className="gallery-food-title">{photo.title}</span><span className="gallery-food-description">{photo.description}</span></span>
   </button>)}</div>
