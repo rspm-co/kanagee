@@ -29,3 +29,6 @@ The organiser credit, festival intentions and future Chairman's message are grou
 
 ## Admin dashboard
 The private `/admin/` page displays interested visitors from MySQL. Set `ADMIN_USERNAME`, `ADMIN_PASSWORD` (12+ characters) and `ADMIN_SESSION_SECRET` (32+ random characters) privately in Hostinger. See `server/README.md` for setup and session details. No default password is shipped.
+
+## Website motion
+The photo animation layer is in `src/useSiteMotion.js`, with CSS floating food images, gentle plate rotation, photo hover effects, scroll reveals, card motion and a scroll-progress bar. The pause button stores only the visitor's animation preference locally. Reduced-motion preferences bypass motion, and floating images pause outside the viewport. Admin screens do not use festival scroll animations. The new Experiences thali is a background-removed edit of the supplied photograph (`public/experience-thali-cutout.png`), not an event photograph.
