@@ -39,3 +39,14 @@ Frontend build output is nested in `dist/client/`; the complete deployable Node 
 
 ### Express deployment without build settings
 Hostinger's Express preset may run only `npm install` and publish the repository. `postinstall` now builds the frontend automatically during installation, so a separate build command and output directory can remain unset for that mode. Keep root `./`, entry `server.js`, Node 22, and install scripts enabled. Deploy fresh source from GitHub; restoring an older deployment cannot pick up this lifecycle fix. If Hostinger offers explicit build/output settings, `npm run build` and `dist` are also supported. The packaged dist includes its install helper and skips compilation because client/ is already built.
+
+## Private signup dashboard
+Open `/admin/` over HTTPS. Contacts are never exposed by a public API. Configure these runtime variables in Hostinger, then restart:
+
+- `ADMIN_USERNAME`: your chosen login name (defaults to admin).
+- `ADMIN_PASSWORD`: unique strong password, at least 12 characters.
+- `ADMIN_SESSION_SECRET`: random secret, at least 32 characters; generate locally with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` and paste privately into hPanel.
+
+Do not use the placeholders from .env.example as real secrets. Without valid credentials and a session secret the admin endpoints remain unavailable. The username/password are checked on the server; successful login sets an HttpOnly, Secure, SameSite=Strict cookie lasting one hour. Use the exact HTTPS origin configured in APP_ORIGIN. The signed cookie is cleared on logout; rotate ADMIN_SESSION_SECRET to invalidate all outstanding sessions, including after changing admin credentials. Login attempts are rate-limited. Do not share the administrator password or put secrets in VITE_ variables.
+
+The dashboard lists 25 contacts per page, newest first, with mobile search, signup and consent timestamps in IST, and notification status. It uses the existing ticket_interests table and does not send messages or modify contacts. /api/health remains a server health check, not a database check.

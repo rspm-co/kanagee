@@ -1,12 +1,14 @@
 import express from 'express';
 import rateLimit from 'express-rate-limit';
+import {adminRoutes} from './admin.js';
 
-export function createApp({pool, origin, staticDirectory}) {
+export function createApp({pool, origin, staticDirectory, admin}) {
   const app=express();
   app.disable('x-powered-by');
   app.use('/api', (_req,res,next)=>{res.set('Cache-Control','no-store');res.set('X-Content-Type-Options','nosniff');next()});
   app.use('/api',rateLimit({windowMs:60_000,limit:15,standardHeaders:'draft-7',legacyHeaders:false,message:{ok:false,message:'Please try again in a minute.'}}));
   app.use('/api',express.json({limit:'2kb'}));
+  app.use('/api/admin',adminRoutes({pool,origin,admin}));
   app.get('/api/health',(_req,res)=>res.json({ok:true}));
   const register=async(req,res)=>{
     if(req.get('origin')&&req.get('origin')!==origin)return res.status(403).json({ok:false});

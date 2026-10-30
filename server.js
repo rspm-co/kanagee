@@ -18,7 +18,7 @@ if(!configured)console.warn('Database environment variables are missing. Signups
 const frontendPath=['./dist/client/','./client/'].map(path=>new URL(path,import.meta.url)).find(path=>existsSync(new URL('index.html',path)));
 if(!frontendPath)throw new Error('Built frontend is missing. Run npm run build and deploy the dist directory, including client/.');
 const staticDirectory=fileURLToPath(frontendPath);
-const app=createApp({pool,origin,staticDirectory});
+const app=createApp({pool,origin,staticDirectory,admin:{username:process.env.ADMIN_USERNAME,password:process.env.ADMIN_PASSWORD,secret:process.env.ADMIN_SESSION_SECRET}});
 const server=app.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>console.log('KANAGEE web app started.'));
 async function stop(){server.close(async()=>{if(pool)await pool.end();process.exit(0)})}
 process.on('SIGTERM',stop);process.on('SIGINT',stop);

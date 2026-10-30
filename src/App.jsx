@@ -10,6 +10,7 @@ import {foodStories} from './data/foodStories';
 import {womenStories} from './data/womenStories';
 import {sponsors} from './data/sponsors';
 import TicketInterest from './components/TicketInterest';
+import Admin from './components/Admin';
 import {OurIntent,OrganisedBy} from './components/Organisers';
 import {campaign} from './config/campaign';
 gsap.registerPlugin(ScrollTrigger);
@@ -65,4 +66,4 @@ function AboutPage(){
     <section className="about-invitation section"><div><span className="eyebrow">36 DISTRICTS. ONE MAHARASHTRA.</span><h2 lang="mr" className="marathi-title">या, हा उत्सव आपला करूया.</h2></div><a href="/#experiences" className="button">Explore the festival<ArrowUpRight size={17}/></a></section>
   </main><SiteFooter/></>;
 }
-export default function App(){return window.location.pathname.replace(/\/$/,'')==='/about'?<AboutPage/>:<HomePage/>}
+export default function App(){const path=window.location.pathname.replace(/\/$/,'');return path==='/admin'?<Admin/>:path==='/about'?<AboutPage/>:<HomePage/>}

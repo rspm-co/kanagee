@@ -26,3 +26,6 @@ For Hostinger Node.js Web Apps, the Node server, MySQL table schema, and environ
 The About page includes the supplied Chairman portrait and seven festival-vision points from the organiser. These are presented as the Chairman’s vision, without an invented personal quotation or name. Edit `organiser.chairman` in `src/config/organiser.js` to add his approved name or personal message later. The supplied “Maharashtra’s First Food Festival” and “100% Preservative-Free” positioning is organiser-provided copy.
 
 The organiser credit, festival intentions and future Chairman's message are grouped on the dedicated `/about/` page (“About KANAGEE”), linked from both the header and footer. They no longer appear as full sections on the homepage. The build includes `about/index.html` so direct links and refreshes resolve on the deployed server.
+
+## Admin dashboard
+The private `/admin/` page displays interested visitors from MySQL. Set `ADMIN_USERNAME`, `ADMIN_PASSWORD` (12+ characters) and `ADMIN_SESSION_SECRET` (32+ random characters) privately in Hostinger. See `server/README.md` for setup and session details. No default password is shipped.
