@@ -15,7 +15,9 @@ const pool=configured?mysql.createPool({
 const origin=process.env.APP_ORIGIN;
 if(!origin||new URL(origin).origin!==origin)throw new Error('APP_ORIGIN must be the exact website origin, without a trailing slash.');
 if(!configured)console.warn('Database environment variables are missing. Signups will return an error.');
-const staticDirectory=fileURLToPath(new URL(existsSync(new URL('./dist/index.html',import.meta.url))?'./dist/':'./',import.meta.url));
+const frontendPath=['./dist/client/','./client/'].map(path=>new URL(path,import.meta.url)).find(path=>existsSync(new URL('index.html',path)));
+if(!frontendPath)throw new Error('Built frontend is missing. Run npm run build and deploy the dist directory, including client/.');
+const staticDirectory=fileURLToPath(frontendPath);
 const app=createApp({pool,origin,staticDirectory});
 const server=app.listen(Number(process.env.PORT||3000),'0.0.0.0',()=>console.log('KANAGEE web app started.'));
 async function stop(){server.close(async()=>{if(pool)await pool.end();process.exit(0)})}

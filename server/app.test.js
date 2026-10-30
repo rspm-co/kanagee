@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createApp} from './app.js';
 
 async function withServer(pool,run){
-  const app=createApp({pool,origin:'https://kanagee.test',staticDirectory:process.cwd()+'/dist'});
+  const app=createApp({pool,origin:'https://kanagee.test',staticDirectory:process.cwd()+'/dist/client'});
   const server=app.listen(0,'127.0.0.1');
   await new Promise(resolve=>server.once('listening',resolve));
   try{await run('http://127.0.0.1:'+server.address().port)}finally{await new Promise(resolve=>server.close(resolve))}
@@ -32,7 +32,7 @@ test('missing database and failed writes cannot confirm registration',async()=>{
 });
 test('built frontend is served and unknown API routes return JSON errors',async()=>{
   await withServer(null,async base=>{
-    const page=await fetch(base+'/');assert.equal(page.status,200);assert.match(await page.text(),/<div id="root"><\/div>/);
+    const page=await fetch(base+'/');assert.equal(page.status,200);const html=await page.text();assert.match(html,/<div id="root"><\/div>/);assert.doesNotMatch(html,/src="\/src\/main.jsx"/);assert.match(html,/src="\/assets\/[^"]+\.js"/);
     const response=await fetch(base+'/api/unknown');assert.equal(response.status,404);assert.deepEqual(await response.json(),{ok:false});
   });
 });

@@ -34,3 +34,5 @@ SMS/WhatsApp delivery remains a separate future integration. Stored rows begin w
 Hostinger reference: https://www.hostinger.com/support/connecting-a-hostinger-mysql-database-to-a-node-js-application/
 
 If deployment logs say `Entry file: none` or `Application type: not specified`, update Hostinger's framework/application selection to a server-side Node.js app and set entry file `server.js`. Publishing only the static frontend will not run the signup API. Vite is deliberately a production dependency because Hostinger may omit development dependencies when NODE_ENV=production is set during installation.
+
+Frontend build output is nested in `dist/client/`; the complete deployable Node app remains in `dist/`. Keep Hostinger output directory `dist` and entry `server.js`. The server checks `dist/client/` when started from the repository and `client/` when started from the packaged output. It never serves the repository's uncompiled index.html.

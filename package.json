@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build && node scripts/prepare-deployment.mjs",
+    "build": "vite build --outDir dist/client && node scripts/prepare-deployment.mjs",
     "test": "node --test src/data/*.test.js server/*.test.js",
     "start": "node server.js"
   },
