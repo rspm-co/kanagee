@@ -1,4 +1,5 @@
 import express from 'express';
+import {writeInterestReport} from './interestReport.js';
 import rateLimit from 'express-rate-limit';
 import {createHmac,createHash,timingSafeEqual,randomBytes} from 'node:crypto';
 
@@ -35,6 +36,37 @@ export function adminRoutes({pool,origin,admin={}}){
     }catch{return res.status(401).json({ok:false,message:'Please sign in again.'})}
   });
   router.get('/session',(_req,res)=>res.json({ok:true}));
+  router.get('/interests/export',async(req,res)=>{
+    if(!pool)return res.status(503).json({ok:false,message:'Database is not configured.'});
+    const search=typeof req.query.search==='string'?req.query.search.replace(/\D/g,'').slice(0,12):'';
+    const baseFilter="purpose='ticket-launch'"+(search?' AND mobile LIKE ?':'');
+    const baseValues=search?['%'+search+'%']:[];
+    async function batch(cursor){
+      const cursorFilter=cursor?' AND (created_at < ? OR (created_at = ? AND id < ?))':'';
+      const values=cursor?[...baseValues,cursor.created_at,cursor.created_at,cursor.id]:baseValues;
+      const [rows]=await pool.execute('SELECT id,mobile,consent_at,created_at,notification_status,notified_at FROM ticket_interests WHERE '+baseFilter+cursorFilter+' ORDER BY created_at DESC,id DESC LIMIT 500',values);
+      return rows;
+    }
+    try{
+      const first=await batch(null);
+      async function* contacts(){
+        let rows=first;
+        while(rows.length){
+          for(const row of rows)yield row;
+          if(rows.length<500)return;
+          rows=await batch(rows[rows.length-1]);
+        }
+      }
+      const timestamp=new Date().toISOString().replace(/[:.]/g,'-');
+      res.set('Content-Type','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.set('Content-Disposition','attachment; filename="kanagee-interested-visitors-'+timestamp+'.xlsx"');
+      await writeInterestReport({stream:res,records:contacts(),search});
+    }catch{
+      console.error('Admin Excel report export failed.');
+      if(res.headersSent){res.destroy();return}
+      res.removeHeader('Content-Disposition');res.status(503).json({ok:false,message:'Unable to generate the Excel report. Please try again.'});
+    }
+  });
   router.get('/interests',async(req,res)=>{
     if(!pool)return res.status(503).json({ok:false,message:'Database is not configured.'});
     const page=Math.max(1,Math.min(100000,Number.parseInt(req.query.page,10)||1));
