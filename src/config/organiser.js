@@ -2,7 +2,7 @@ export const organiser = {
   name: 'Ladachi Kulfi',
   group: 'R S Papal Group',
   chairman: {
-    name: '',
+    name: 'Mr. Rahul Shivaji Papal',
     designation: 'Chairman',
     photo: '/chairman-portrait.png',
     message: '',
