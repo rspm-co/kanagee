@@ -5,3 +5,5 @@ dist/
 !.env.example
 server/config.php
 server/kanagee-config.php
+
+tmp/

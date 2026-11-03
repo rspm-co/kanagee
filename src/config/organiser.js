@@ -4,7 +4,7 @@ export const organiser = {
   chairman: {
     name: 'Mr. Rahul Shivaji Papal',
     designation: 'Chairman',
-    photo: '/chairman-portrait.png',
+    photo: '/chairman-portrait.webp',
     message: '',
     visionTitle: 'Our Chairman’s Vision',
     introduction: 'KANAGEE — Maharashtra’s First Food Festival',
