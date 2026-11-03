@@ -53,3 +53,6 @@ The dashboard lists 25 contacts per page, newest first, with mobile search, sign
 
 ### Excel report download
 The admin toolbar includes Download Excel. It downloads a real .xlsx workbook containing all contacts matching the applied mobile-number search, not just the visible page. The authenticated /api/admin/interests/export route reads MySQL in batches of 500 and streams the workbook without saving exported contact files on the server. Reports include text-preserved mobile numbers, typed signup/consent/notification dates displayed in IST, notification status, a generated timestamp, frozen/filterable headings and a total-contact count. Raw database UTC timestamps are shifted to IST wall-clock values in Excel, whose dates do not carry timezones. Export uses the existing admin session; no additional environment variables or database changes are required.
+
+### App booking popup
+The ticket popup promotes Android app download and an iPhone booking link. Set VITE_ANDROID_APP_URL and VITE_IPHONE_BOOKING_URL to the actual HTTPS destinations in Hostinger's build settings, then redeploy. No store or APK URLs are invented: missing or invalid links show coming-soon states. The interest signup remains available under “Prefer a ticket-opening update?”. Existing visitors see the updated promotion once per browser session using the app-booking popup session key.
