@@ -45,3 +45,6 @@ The root URL `/` opens a compact landing page with the key festival details, a f
 
 ## Image delivery
 Published PNG images have been converted to WebP. Original PNGs are preserved in `source-assets/images/`, outside the deployed public directory. Run `scripts/optimize-images.py` using Python with Pillow to regenerate full-size WebP files and 480/800px variants for large food photos. Logos use lossless encoding; photographic cutouts retain their alpha channel. Gallery thumbnails and food images use responsive sources while the viewer keeps full-resolution files. The landing hero has an early responsive preload in HTML, and the festival route preloads its own hero; About/Admin avoid unrelated food preloads. The SVG kulfi cursor stays vector.
+
+## First-paint styles
+Production HTML embeds Vite's compiled stylesheet, avoiding the separate render-blocking CSS request while keeping every page styled before React renders. The Google Fonts CSS @import has been removed; its HTML stylesheet link starts with media=print and switches to all after loading, with preconnect hints and display=swap. Fonts stay optional for first paint, with existing system fallbacks. Development continues to use Vite's normal CSS handling. Re-run Lighthouse after deployment to measure actual timing; no fixed millisecond improvement is guaranteed.
