@@ -23,4 +23,18 @@ export const experiences = [
     text: "Family dining and cultural experiences, with room for every generation.",
     icon: "04",
   },
+  {
+    title: "Business speeches.",
+    mr: "व्यावसायिक व्याख्याने",
+    text: "Business speeches are confirmed at KANAGEE. Speakers and session timings will be announced.",
+    icon: "05",
+    confirmed: true,
+  },
+  {
+    title: "Business conferences.",
+    mr: "व्यावसायिक परिषदा",
+    text: "Business conferences are confirmed as part of the festival. The detailed programme will be announced.",
+    icon: "06",
+    confirmed: true,
+  },
 ];

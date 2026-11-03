@@ -32,12 +32,12 @@ footer{background:var(--deep);color:var(--ivory);padding:30px max(6%,calc((100vw
 
 .footer-top{display:grid;grid-template-columns:auto 1fr auto auto;gap:32px}.footer-top>p{justify-self:center}.footer-organisers{justify-self:end}.footer-organisers>.eyebrow{display:block;color:#d5b7a4;font-size:8px;letter-spacing:1.6px;margin-bottom:12px}.footer-organiser-logos{display:flex;align-items:center;gap:24px}.footer-organiser-logos>a{display:flex;align-items:center;justify-content:center}.footer-organiser-logos img{display:block;object-fit:contain;height:auto}.footer-papal-logo{width:150px}.footer-top .back-top{align-self:center}@media(max-width:900px){.footer-top{gap:22px}.footer-organiser-logos{gap:16px}.footer-papal-logo{width:122px}}@media(max-width:600px){.footer-top{grid-template-columns:auto 1fr auto;gap:22px 16px}.footer-top>p{justify-self:center}.footer-organisers{grid-column:1/-1;grid-row:2;justify-self:end}.footer-top .back-top{grid-column:3;grid-row:1}.footer-organiser-logos{gap:22px}.footer-papal-logo{width:135px}}
 
-/* Lightweight native kulfi cursor: no tracking or animation, fine pointers only. */
+/* Keep the decorative kulfi on the page; use precise native cursors on controls. */
 @media(hover:hover) and (pointer:fine){
   body,body *{cursor:url('/kulfi-cursor.svg?v=2') 16 3,auto}
-  a,button,summary,[role="button"],a *,button *,summary *{cursor:url('/kulfi-cursor.svg?v=2') 16 3,pointer}
-  input,textarea,[contenteditable="true"],[contenteditable="true"] *{cursor:text}
-  button:disabled,button:disabled *,input:disabled{cursor:not-allowed}
+  :is(a,button,summary,[role="button"],select,label,input[type="checkbox"],input[type="radio"]),:is(a,button,summary,[role="button"],select,label) *{cursor:pointer}
+  input:not([type="checkbox"]):not([type="radio"]),textarea,[contenteditable="true"],[contenteditable="true"] *{cursor:text}
+  :is(button,input,select,textarea):disabled,:is(button,select):disabled *{cursor:not-allowed}
 }
 
 /* Private contact dashboard. */
@@ -101,3 +101,6 @@ footer{background:var(--deep);color:var(--ivory);padding:30px max(6%,calc((100vw
 @media(max-width:380px){.landing-nav>a{display:none}.landing-brand small{display:none}.landing-copy h1{font-size:43px}.landing-primary-action{gap:13px}.landing-quiet-link{font-size:10px}.landing-photo-note{left:0}.landing-mobile-ticket .nav-ticket{font-size:8px;padding:12px 14px}}
 
 .footer-brand-pair{align-items:flex-end}.footer-brand-pair>.footer-kulfi-organiser{flex-direction:column;gap:10px}.footer-kulfi-organiser>.eyebrow{font-size:8px;font-weight:400;letter-spacing:1.1px;white-space:nowrap;color:#d5b7a4;line-height:1.5}@media(max-width:760px){.footer-kulfi-organiser>.eyebrow{font-size:7px;letter-spacing:.7px}.footer-brand-pair>.footer-kulfi-organiser{gap:8px}}
+
+/* Sponsor identities stay intact, with a clear hierarchy above the festival story. */
+.sponsor-strip{display:flex;justify-content:center;align-items:center;gap:44px;padding:16px 6%;border-bottom:1px solid var(--line);background:#fffdf7}.sponsor-credit{display:flex;align-items:center;gap:16px}.sponsor-credit>.eyebrow{font-size:9px;letter-spacing:1.2px;color:var(--muted);max-width:90px}.sponsor-credit+.sponsor-credit{border-left:1px solid var(--line);padding-left:44px}.sponsor-logo{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:8px;padding:5px 8px}.sponsor-logo img{display:block;object-fit:contain;width:auto;height:88px}.sponsor-credit--2 img{height:auto;width:205px;max-width:100%}@media(max-width:600px){.sponsor-strip{gap:18px;padding:14px 5%;align-items:stretch}.sponsor-credit{flex:1;min-width:0;flex-direction:column;gap:8px;justify-content:center}.sponsor-credit>.eyebrow{max-width:none;font-size:8px;text-align:center}.sponsor-credit+.sponsor-credit{padding-left:18px}.sponsor-logo{max-width:100%;padding:4px}.sponsor-logo img{height:76px}.sponsor-credit--2 img{width:175px;height:auto;max-height:66px}.sponsor-credit--2 .sponsor-logo{margin-block:auto}}

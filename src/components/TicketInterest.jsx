@@ -48,13 +48,13 @@ export default function TicketInterest({label='We are interested',variant='defau
       {status==='success'?<div role="status">
         <span className="eyebrow">THANK YOU FOR YOUR INTEREST</span>
         <h2 id={titleId}>You’re on the list!</h2>
-        <p id={descriptionId}>As soon as ticket sales open, we’ll notify you on your mobile number.</p>
+        <p id={descriptionId}>We’ll keep you informed with ticket updates on your mobile number.</p>
         <button type="button" className="button interest-submit" onClick={close} autoFocus>Done</button>
       </div>:<>
-        <span className="eyebrow">{event.bookingUrl?'YOUR TICKET TO KANAGEE':'TICKETS OPENING SOON'}</span>
+        <span className="eyebrow">{event.bookingUrl?'YOUR TICKET TO KANAGEE':'KANAGEE TICKET UPDATES'}</span>
         <h2 id={titleId}>Your next delicious plan.</h2>
-        <p id={descriptionId}>Leave your mobile number. We’ll let you know as soon as tickets open.</p>
-        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Ticket prices and daily opening times to be announced.</small>}</div>
+        <p id={descriptionId}>Book tickets through the Ladachi Kulfi mobile app. Leave your mobile number for ticket updates.</p>
+        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open daily {event.dailyHours}. Book tickets through the {event.bookingPlatform}.</small>}</div>
         <form onSubmit={submit}>
           <label htmlFor={mobileId}>Mobile number</label>
           <div className="interest-phone"><span aria-hidden="true">+91</span><input id={mobileId} name="tel" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Enter mobile number" autoFocus required maxLength={18} value={mobile} onChange={e=>{setMobile(e.target.value);setError('')}} aria-invalid={!!error} aria-describedby={error?errorId:consentId} disabled={status==='submitting'}/></div>

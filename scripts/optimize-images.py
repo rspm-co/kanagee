@@ -9,7 +9,7 @@ sources = root / 'source-assets' / 'images'
 sources.mkdir(parents=True, exist_ok=True)
 files = {p.name: p for p in sources.glob('*.png')}
 files.update({p.name: p for p in public.glob('*.png')})
-logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo'}
+logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo', 'udyami-maharashtra-logo', 'mea-logo'}
 responsive = {'heritage-thali-cutout', 'experience-thali-cutout', 'seafood-platter'}
 results = []
 for name, path in sorted(files.items()):
