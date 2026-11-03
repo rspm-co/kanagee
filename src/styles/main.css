@@ -35,8 +35,8 @@ footer{background:var(--deep);color:var(--ivory);padding:30px max(6%,calc((100vw
 
 /* Lightweight native kulfi cursor: no tracking or animation, fine pointers only. */
 @media(hover:hover) and (pointer:fine){
-  body,body *{cursor:url('/kulfi-cursor.svg') 16 2,auto}
-  a,button,summary,[role="button"],a *,button *,summary *{cursor:url('/kulfi-cursor.svg') 16 2,pointer}
+  body,body *{cursor:url('/kulfi-cursor.svg?v=2') 16 3,auto}
+  a,button,summary,[role="button"],a *,button *,summary *{cursor:url('/kulfi-cursor.svg?v=2') 16 3,pointer}
   input,textarea,[contenteditable="true"],[contenteditable="true"] *{cursor:text}
   button:disabled,button:disabled *,input:disabled{cursor:not-allowed}
 }
