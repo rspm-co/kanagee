@@ -12,3 +12,6 @@ await copyFile(new URL('../dist/client/index.html',import.meta.url),new URL('../
 
 await mkdir(new URL('../dist/client/admin/',import.meta.url),{recursive:true});
 await copyFile(new URL('../dist/client/index.html',import.meta.url),new URL('../dist/client/admin/index.html',import.meta.url));
+
+await mkdir(new URL('../dist/client/festival/',import.meta.url),{recursive:true});
+await copyFile(new URL('../dist/client/index.html',import.meta.url),new URL('../dist/client/festival/index.html',import.meta.url));

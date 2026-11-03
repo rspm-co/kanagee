@@ -44,7 +44,7 @@ export default function useSiteMotion(path,paused){
      if(thali)gsap.fromTo(thali,{yPercent:5,rotation:-5},{yPercent:-5,rotation:5,ease:'none',scrollTrigger:{trigger:thali.parentElement,start:'top bottom',end:'bottom top',scrub:1.3}});
     });
   },root);
-  const floating=root.querySelectorAll('.supplied-thali, .experience-thali img, .heritage-half-plate, .plate-badge, .debut-star, .headline-star');
+  const floating=root.querySelectorAll('.landing-plate img, .supplied-thali, .experience-thali img, .heritage-half-plate, .plate-badge, .debut-star, .headline-star');
   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>entry.target.classList.toggle('motion-visible',entry.isIntersecting)),{rootMargin:'80px'});
   floating.forEach(el=>observer.observe(el));
   const visibility=()=>root.classList.toggle('document-hidden',document.hidden);

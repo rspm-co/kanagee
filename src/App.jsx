@@ -11,6 +11,7 @@ import {womenStories} from './data/womenStories';
 import {sponsors} from './data/sponsors';
 import TicketInterest from './components/TicketInterest';
 import Admin from './components/Admin';
+import LandingPage from './components/LandingPage';
 import FoodGallery from './components/FoodGallery';
 import {OurIntent,OrganisedBy} from './components/Organisers';
 import {campaign} from './config/campaign';
@@ -54,7 +55,7 @@ return()=>{observer.disconnect();mm.revert();ctx.revert()};
 
 
 
-function SiteHeader({active='',about=false}){const [menu,setMenu]=useState(false);return <header><a className="brand official-brand" href="/#home" aria-label="KANAGEE — Home"><img src="/kanagee-logo-transparent.png" width="1205" height="1306" alt="कणगी — ३६ जिल्हे, ३६ चवी, अस्सल महाराष्ट्राचा खाद्योत्सव"/><span className="brand-name">KANAGEE<small>अस्सल महाराष्ट्राचा खाद्य महोत्सव</small></span></a><nav id="main-navigation" className={menu?'open':''} aria-label="Main navigation">{links.map(([label,id])=><a key={id} href={(about?'/':'')+'#'+id} className={active===id?'active':''} onClick={()=>setMenu(false)}>{label}</a>)}<a href="/about/" className={about?'active':''} aria-current={about?'page':undefined} onClick={()=>setMenu(false)}>About KANAGEE</a></nav><TicketInterest label="TICKET INFO" variant="nav" onOpen={()=>setMenu(false)}/><button className="menu-toggle" aria-label={menu?'Close navigation':'Open navigation'} aria-expanded={menu} aria-controls="main-navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></header>}
+function SiteHeader({active='',about=false}){const [menu,setMenu]=useState(false);return <header><a className="brand official-brand" href="/#home" aria-label="KANAGEE — Home"><img src="/kanagee-logo-transparent.png" width="1205" height="1306" alt="कणगी — ३६ जिल्हे, ३६ चवी, अस्सल महाराष्ट्राचा खाद्योत्सव"/><span className="brand-name">KANAGEE<small>अस्सल महाराष्ट्राचा खाद्य महोत्सव</small></span></a><nav id="main-navigation" className={menu?'open':''} aria-label="Main navigation">{links.map(([label,id])=><a key={id} href={'/festival/#'+id} className={active===id?'active':''} onClick={()=>setMenu(false)}>{label}</a>)}<a href="/about/" className={about?'active':''} aria-current={about?'page':undefined} onClick={()=>setMenu(false)}>About KANAGEE</a></nav><TicketInterest label="TICKET INFO" variant="nav" onOpen={()=>setMenu(false)}/><button className="menu-toggle" aria-label={menu?'Close navigation':'Open navigation'} aria-expanded={menu} aria-controls="main-navigation" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></header>}
 function SiteFooter(){return <footer><div className="footer-top"><div className="footer-brand-pair"><a className="brand official-brand" href="/#home" aria-label="KANAGEE — Home"><img src="/kanagee-logo-transparent.png" width="1205" height="1306" alt="कणगी — KANAGEE" loading="lazy"/></a><a href="/about/#organisers" aria-label="About Ladachi Kulfi"><img className="footer-kulfi-logo" src="/ladachi-kulfi-logo.png" width="473" height="473" alt="Ladachi Kulfi — R S Papal Group" loading="lazy" decoding="async"/></a></div><p lang="mr">चव महाराष्ट्राची.<br/>परंपरा महाराष्ट्राची.<br/><span>उत्सव आपल्या सगळ्यांचा!</span></p><div className="footer-organisers" aria-label="R S Papal Group"><span className="eyebrow">ORGANISED BY</span><div className="footer-organiser-logos"><a href="/about/#organisers" aria-label="About R S Papal Group"><img className="footer-papal-logo" src="/rs-papal-logo.png" width="495" height="328" alt="R S Papal Marketing Pvt Ltd, Pune" loading="lazy" decoding="async"/></a></div></div><a href="/#home" className="back-top" aria-label="Back to top"><ArrowUpRight/></a></div><div className="footer-bottom"><span>© 2026 KANAGEE</span><a href="/about/">About KANAGEE · Our organisers</a><span>{event.dates} · {event.venue}, {event.city}</span></div></footer>}
 
 function AboutPage(){
@@ -67,7 +68,7 @@ function AboutPage(){
       <p lang="mr">आपली माती. आपली चव. आपली माणसं.<br/>कणगीमागची माणसं आणि आमच्या मनातला विचार.</p>
     </section>
     <OrganisedBy/><OurIntent/>
-    <section className="about-invitation section"><div><span className="eyebrow">36 DISTRICTS. ONE MAHARASHTRA.</span><h2 lang="mr" className="marathi-title">या, हा उत्सव आपला करूया.</h2></div><a href="/#experiences" className="button">Explore the festival<ArrowUpRight size={17}/></a></section>
+    <section className="about-invitation section"><div><span className="eyebrow">36 DISTRICTS. ONE MAHARASHTRA.</span><h2 lang="mr" className="marathi-title">या, हा उत्सव आपला करूया.</h2></div><a href="/festival/#experiences" className="button">Explore the festival<ArrowUpRight size={17}/></a></section>
   </main><SiteFooter/></>;
 }
 export default function App(){
@@ -75,5 +76,5 @@ export default function App(){
  const [paused,setPaused]=useState(()=>{try{return localStorage.getItem('kanagee-motion-paused')==='true'}catch{return false}});
  const scope=useSiteMotion(path,paused);
  function toggleMotion(){setPaused(value=>{const next=!value;try{localStorage.setItem('kanagee-motion-paused',String(next))}catch{}return next})}
- return <div ref={scope} className="site-shell" data-motion={paused?'paused':'playing'}>{path!=='/admin'&&<><div className="site-scroll-progress" aria-hidden="true"/><button className="site-motion-toggle" onClick={toggleMotion} aria-pressed={paused} aria-label={paused?'Resume website animations':'Pause website animations'} title={paused?'Resume motion':'Pause motion'}>{paused?<Play size={14}/>:<Pause size={14}/>}</button></>}{path==='/admin'?<Admin/>:path==='/about'?<AboutPage/>:<HomePage paused={paused}/>}</div>
+ return <div ref={scope} className="site-shell" data-motion={paused?'paused':'playing'}>{path!=='/admin'&&<><div className="site-scroll-progress" aria-hidden="true"/><button className="site-motion-toggle" onClick={toggleMotion} aria-pressed={paused} aria-label={paused?'Resume website animations':'Pause website animations'} title={paused?'Resume motion':'Pause motion'}>{paused?<Play size={14}/>:<Pause size={14}/>}</button></>}{path==='/admin'?<Admin/>:path==='/about'?<AboutPage/>:path==='/festival'?<HomePage paused={paused}/>:<LandingPage paused={paused} footer={<SiteFooter/>}/>}</div>
 }

@@ -39,3 +39,6 @@ The homepage Gallery follows Experiences and uses a single-row horizontal slider
 Assign gallery images by setting `region` in `src/data/gallery.js` to an exact label from `galleryRegions`. Existing photos have `region: null` and appear only under All Maharashtra until assigned. Empty regions show a coming-soon message. Card sizes and the single-row slider are retained.
 
 Ticket CTAs use a soft warm halo and slow light sweep, without a lightning symbol. On the homepage, the signup popup opens after 10 seconds once per browser session. A manual opening also counts as shown; automatic opening waits while another dialog is open, the tab is hidden, or the visitor is typing. It is not shown automatically on About or Admin pages. The popup is dismissible and the CTA can reopen it at any time.
+
+## Ticket-focused landing page
+The root URL `/` opens a compact landing page with the key festival details, a food image, ticket panel and a mobile ticket action. While event.bookingUrl is unset, the primary action opens the existing interest signup; it does not claim tickets are on sale. Set the confirmed event.bookingUrl later to switch the landing CTAs to Book tickets. The full festival website (including regional gallery) is preserved at `/festival/`, with About at `/about/` and the private dashboard at `/admin/`.

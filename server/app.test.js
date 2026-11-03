@@ -37,9 +37,9 @@ test('built frontend is served and unknown API routes return JSON errors',async(
   });
 });
 
-test('about page opens directly and on refresh without a server 404',async()=>{
+test('about and festival pages open directly and on refresh without a server 404',async()=>{
   await withServer(null,async base=>{
-    for(const path of ['/about','/about/']){
+    for(const path of ['/about','/about/','/festival','/festival/']){
       const response=await fetch(base+path);assert.equal(response.status,200);assert.match(await response.text(),/<div id="root"><\/div>/);
     }
   });
