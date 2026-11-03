@@ -3,8 +3,8 @@ import {ArrowUpRight, Bell, Check, MapPin, X} from 'lucide-react';
 import {saveTicketInterest} from '../data/ticketInterest.js';
 import {event} from '../config/event';
 
-let popupShownThisVisit=false;
-const popupSessionKey='kanagee-ticket-popup-shown';
+// Reset on every document load, including refresh, but avoid duplicate prompts.
+let popupShownThisPage=false;
 const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest';
 
 export default function TicketInterest({label='We are interested',variant='default',onOpen,autoOpen=false}){
@@ -14,18 +14,17 @@ export default function TicketInterest({label='We are interested',variant='defau
   const [mobile,setMobile]=useState('');
   const [status,setStatus]=useState('idle');
   const [error,setError]=useState('');
-  function open(){if(dialog.current.open)return;setMobile('');setStatus('idle');setError('');onOpen?.();dialog.current.showModal();popupShownThisVisit=true;try{sessionStorage.setItem(popupSessionKey,'true')}catch{}}
+  function open(){if(dialog.current.open)return;setMobile('');setStatus('idle');setError('');onOpen?.();dialog.current.showModal();popupShownThisPage=true;}
   useEffect(()=>{
     if(!autoOpen)return;
     let timer;
     function prompt(){
-      if(popupShownThisVisit)return;
-      try{if(sessionStorage.getItem(popupSessionKey)==='true')return}catch{}
+      if(popupShownThisPage)return;
       const typing=document.activeElement?.matches('input,textarea,[contenteditable="true"]');
       if(document.hidden||document.querySelector('dialog[open]')||typing){timer=setTimeout(prompt,2500);return}
       open();
     }
-    timer=setTimeout(prompt,10000);
+    timer=setTimeout(prompt,800);
     return()=>clearTimeout(timer);
   },[autoOpen]);
   function close(){if(status!=='submitting')dialog.current.close()}
