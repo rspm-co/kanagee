@@ -27,7 +27,11 @@ export function createApp({pool, origin, staticDirectory, admin}) {
   // Preserve the previous endpoint for frontend builds already deployed.
   app.post(['/api/ticket-interest','/api/ticket-interest.php'],register);
   app.use('/api',(_req,res)=>res.status(404).json({ok:false}));
-  app.use(express.static(staticDirectory,{dotfiles:'deny',index:'index.html'}));
+  app.use(express.static(staticDirectory,{dotfiles:'deny',index:'index.html',setHeaders(res,file){
+    const name=file.replaceAll('\\','/');
+    const versioned=/\/assets\/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css)$/.test(name)||/\.[a-f0-9]{12}\.(webp|svg|jpg)$/.test(name);
+    res.set('Cache-Control',versioned?'public, max-age=31536000, immutable':'no-cache');
+  }}));
   app.use((error,_req,res,_next)=>res.status(error.status===413?413:400).json({ok:false,message:'Invalid request.'}));
   return app;
 }

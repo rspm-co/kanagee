@@ -1,6 +1,7 @@
 import {mkdir,copyFile,readFile,writeFile} from 'node:fs/promises';
 import {resolve,relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {versionImageUrls} from './versioned-assets.mjs';
 await mkdir(new URL('../dist/server/',import.meta.url),{recursive:true});
 await mkdir(new URL('../dist/scripts/',import.meta.url),{recursive:true});
 for(const file of ['server.js','server/app.js','server/admin.js','server/interestReport.js','package.json','package-lock.json','scripts/hostinger-build.mjs']){
@@ -29,6 +30,6 @@ const secondaryHtml=html.replace(/<link\b[^>]*\bdata-landing-hero\b[^>]*>/g,'');
 for(const route of ['about','admin','festival']){
   await mkdir(new URL(route+'/',output),{recursive:true});
   const page=route==='festival'?secondaryHtml.replace('</head>','<link rel="preload" as="image" type="image/webp" href="/maharashtrian-thali.webp" fetchpriority="high"></head>'):secondaryHtml;
-  await writeFile(new URL(route+'/index.html',output),page);
+  await writeFile(new URL(route+'/index.html',output),versionImageUrls(page));
 }
 console.log('Deployment prepared: inlined '+inlineBytes+' bytes of site CSS; fonts load without blocking first paint.');

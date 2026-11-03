@@ -48,3 +48,9 @@ Published PNG images have been converted to WebP. Original PNGs are preserved in
 
 ## First-paint styles
 Production HTML embeds Vite's compiled stylesheet, avoiding the separate render-blocking CSS request while keeping every page styled before React renders. The Google Fonts CSS @import has been removed; its HTML stylesheet link starts with media=print and switches to all after loading, with preconnect hints and display=swap. Fonts stay optional for first paint, with existing system fallbacks. Development continues to use Vite's normal CSS handling. Re-run Lighthouse after deployment to measure actual timing; no fixed millisecond improvement is guaranteed.
+# Static asset caching
+
+Production builds give images content-based filenames and Vite fingerprints JavaScript and CSS. Express serves those URLs with `Cache-Control: public, max-age=31536000, immutable`. Changing an image changes its URL automatically. HTML and legacy unversioned files revalidate (`no-cache`); all API responses, including admin data and exports, remain `no-store`.
+
+After redeploying Hostinger, check the live response headers. Cloudflare rules must respect the origin Cache-Control headers rather than override them with a shorter browser TTL. The third-party Cloudflare Insights beacon's caching is controlled by Cloudflare, outside this application's response headers.
+
