@@ -54,7 +54,7 @@ export default function TicketInterest({label='We are interested',variant='defau
         <h2 id={titleId}>Your next delicious plan.</h2>
         <p id={descriptionId}>Book tickets through the Ladachi Kulfi mobile app. Leave your mobile number for ticket updates.</p>
         <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open daily {event.dailyHours}. Book tickets through the {event.bookingPlatform}.</small>}</div>
-        <div className="popup-stall"><div><strong>Bring your taste to KANAGEE.</strong><span>Apply for a traditional food stall.</span></div><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Register Here</span><ArrowUpRight size={17} aria-hidden="true"/></a></div>
+        <div className="popup-stall"><div><strong>Bring your taste to KANAGEE.</strong><span>Apply for a traditional food stall.</span></div><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div>
         <form onSubmit={submit}>
           <label htmlFor={mobileId}>Mobile number</label>
           <div className="interest-phone"><span aria-hidden="true">+91</span><input id={mobileId} name="tel" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Enter mobile number" required maxLength={18} value={mobile} onChange={e=>{setMobile(e.target.value);setError('')}} aria-invalid={!!error} aria-describedby={error?errorId:consentId} disabled={status==='submitting'}/></div>
