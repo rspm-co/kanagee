@@ -32,7 +32,7 @@ test('missing database and failed writes cannot confirm registration',async()=>{
 });
 test('built frontend is served and unknown API routes return JSON errors',async()=>{
   await withServer(null,async base=>{
-    const page=await fetch(base+'/');assert.equal(page.status,200);const html=await page.text();assert.match(html,/<div id="root"><\/div>/);assert.doesNotMatch(html,/src="\/src\/main.jsx"/);assert.match(html,/src="\/assets\/[^"]+\.js"/);
+    const page=await fetch(base+'/');assert.equal(page.status,200);const html=await page.text();assert.match(html,/<div id="root">[\s\S]*<h1\b/);assert.doesNotMatch(html,/src="\/src\/main.jsx"/);assert.match(html,/src="\/assets\/[^"]+\.js"/);
     const response=await fetch(base+'/api/unknown');assert.equal(response.status,404);assert.deepEqual(await response.json(),{ok:false});
   });
 });
@@ -40,7 +40,7 @@ test('built frontend is served and unknown API routes return JSON errors',async(
 test('about and festival pages open directly and on refresh without a server 404',async()=>{
   await withServer(null,async base=>{
     for(const path of ['/about','/about/','/festival','/festival/']){
-      const response=await fetch(base+path);assert.equal(response.status,200);assert.match(await response.text(),/<div id="root"><\/div>/);
+      const response=await fetch(base+path);assert.equal(response.status,200);assert.match(await response.text(),/<div id="root">[\s\S]*<h1\b/);
     }
   });
 });

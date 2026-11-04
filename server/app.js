@@ -1,6 +1,7 @@
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import {adminRoutes} from './admin.js';
+import {agentRoutes} from './agents.js';
 
 export function createApp({pool, origin, staticDirectory, admin}) {
   const app=express();
@@ -27,6 +28,8 @@ export function createApp({pool, origin, staticDirectory, admin}) {
   // Preserve the previous endpoint for frontend builds already deployed.
   app.post(['/api/ticket-interest','/api/ticket-interest.php'],register);
   app.use('/api',(_req,res)=>res.status(404).json({ok:false}));
+  app.use(agentRoutes({staticDirectory,origin}));
+  app.use('/countdown',(_req,res,next)=>{res.set('X-Robots-Tag','noindex, nofollow, noarchive');next()});
   app.use(express.static(staticDirectory,{dotfiles:'deny',index:'index.html',setHeaders(res,file){
     const name=file.replaceAll('\\','/');
     const versioned=/\/assets\/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css)$/.test(name)||/\.[a-f0-9]{12}\.(webp|svg|jpg)$/.test(name);

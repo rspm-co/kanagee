@@ -1,0 +1,23 @@
+{
+  "tool": "Built-in image_gen",
+  "purpose": "Illustrative complete regional thalis, not confirmed festival dishes or event photographs.",
+  "prompts": [
+    {
+      "asset": "vidarbha-saoji-thali",
+      "prompt": "Create a NEW COMPLETE VIDARBHA THALI, not a single curry bowl. Use the reference Saoji curry only as a reference for the main dish and photographic style. Show one whole round stainless-steel thali holding: a steel katori of the dark red-brown Saoji bone-in meat curry, two rustic jowar bhakri folded at the back-left, a small bowl of steamed white rice, one small bowl of dal, fresh onion wedges, lime wedge, a tiny portion of coarse green chilli chutney. Arrange all food ON the one steel tray like a real home-style regional meal. Main subject must be the complete plated meal, camera three-quarter overhead, all tray and bread visible with a generous transparent margin. High-resolution photorealistic food photography with appetising natural detail and soft even daylight. Genuine transparent alpha outside the complete thali silhouette. No standalone oversized bowl, tabletop, backdrop, gradient, checkerboard, floating separate dishes, lettering, watermark or extra decorative props. An illustrative Vidarbha meal, not a claim of the festival's menu."
+    },
+    {
+      "asset": "marathwada-dhapate-thali",
+      "prompt": "Create a NEW COMPLETE MARATHWADA REGIONAL THALI, not a plate containing only flatbreads. Use the reference Dhapate as a reference for the savoury multigrain flatbreads and photographic style. Show one whole round stainless-steel tray holding: two rustic toasted Dhapate flatbreads folded at the back-left, a small katori of yellow pithla, a small bowl of simple cooked lentil/legume curry, a bowl of steamed rice, a small katori of plain white curd, a little coarse green thecha, onion wedges and one modest pickle portion. Everything neatly arranged ON the same tray as a believable everyday Maharashtrian rural meal. High-resolution photorealistic food photography, three-quarter overhead camera, soft daylight, realistic bread and food texture. Full tray visible, generous transparent margin around all edges. Genuine transparent alpha outside the whole thali. No table, floor, gradient backdrop, checkerboard, standalone giant bread close-up, floating dishes, text, watermark, or decorative props. This is an illustrative regional thali, not a promised festival menu."
+    },
+    {
+      "asset": "uttar-maharashtra-khandeshi-thali",
+      "prompt": "Create a NEW COMPLETE UTTAR MAHARASHTRA / KHANDESHI THALI, not a single Shev Bhaji bowl. Use the supplied Shev Bhaji as a reference for the main dish's food and photographic style. Show one whole round stainless-steel thali with: a medium steel katori of Khandeshi Shev Bhaji topped with thick golden gram-flour sev, one small bowl of smoky mashed roasted eggplant bharit with spring onion flecks, two rustic jowar bhakri folded at back-left, a small bowl of steamed white rice, onion wedges, lime, and a tiny green chilli chutney portion. Keep all the food on one tray in a natural believable regional meal arrangement. Three-quarter overhead camera, appetising realistic textures, soft even daylight, high resolution. Show complete tray and bread with a generous transparent margin. Genuine transparent alpha outside the full thali silhouette, with no table, gradient backdrop, cast shadow background, checkerboard, extra props, text, watermark or floating separate bowls. An illustrative regional meal, not the confirmed festival menu."
+    }
+  ],
+  "regionalSources": [
+    "https://maharashtratourism.gov.in/flavors-of-maharashtra/",
+    "https://dgipr.maharashtra.gov.in/sites/default/files/2020-08/MAhead-FEB%202015.pdf",
+    "https://www.incredibleindia.gov.in/en/maharashtra/jalgaon/savour-the-tasty-treats-in-jalgaon"
+  ]
+}

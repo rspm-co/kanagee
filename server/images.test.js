@@ -13,7 +13,7 @@ test('production images use WebP and each page preloads only its own hero',async
  try{
   const landing=await(await fetch(base+'/')).text();assert.match(landing,/data-landing-hero/);assert.match(landing,/imagesrcset=/);assert.match(landing,/heritage-thali-cutout-480w\.[a-f0-9]{12}\.webp/);
   for(const path of ['/about/','/admin/']){const html=await(await fetch(base+path)).text();assert.doesNotMatch(html,/data-landing-hero/);assert.doesNotMatch(html,/rel="preload"[^>]+as="image"/)}
-  const festival=await(await fetch(base+'/festival/')).text();assert.match(festival,/rel="preload"[^>]+maharashtrian-thali\.[a-f0-9]{12}\.webp/);assert.doesNotMatch(festival,/data-landing-hero/);
+  const festival=await(await fetch(base+'/festival/')).text();assert.match(festival,/rel="preload"[^>]+festival-thali\.[a-f0-9]{12}\.webp/);assert.doesNotMatch(festival,/data-landing-hero/);
   for(const name of ['heritage-thali-cutout.webp','heritage-thali-cutout-480w.webp','heritage-thali-cutout-800w.webp','kanagee-logo-transparent-128w.webp','chairman-portrait.webp','ladachi-kulfi-logo.webp','rs-papal-logo.webp']){
    const response=await fetch(base+versionImageUrls('/'+name));assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'public, max-age=31536000, immutable');assert.match(response.headers.get('content-type'),/image\/webp/);const bytes=Buffer.from(await response.arrayBuffer());assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.equal(bytes.toString('ascii',8,12),'WEBP');
   }

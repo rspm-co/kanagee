@@ -1,4 +1,5 @@
 export const sponsors=[
   {name:'उद्यमी महाराष्ट्र',category:'Title Sponsor',logo:'/udyami-maharashtra-logo.webp',width:285,height:320,order:1},
-  {name:'Maratha Entrepreneurs’ Association (MEA)',category:'Associate Sponsor',logo:'/mea-logo.webp',width:640,height:268,order:2},
+  {name:'Travelyfoodie',category:'Associate Partner',logo:'/travelyfoodie-logo.webp',width:256,height:256,order:2,style:'travelyfoodie'},
+  {name:'Maratha Entrepreneurs’ Association (MEA)',category:'Associate Partner',logo:'/mea-logo.webp',width:640,height:268,order:3},
 ];

@@ -1,0 +1,6 @@
+Built-in image_gen edit.
+Prompt: Isolate the complete fish-curry bowl and matching underplate, removing the table, background rice plate and other background. Use genuine transparent alpha. Preserve the fish, orange-red curry, coriander garnish, bowl, plate, arrangement and camera angle. Improve photographic clarity, texture and balanced exposure. Complete only clipped edges naturally and keep a transparent margin with smooth edges. No extra food, props, lettering or decorations.
+Region: Konkan, confirmed by the user.
+
+Refinement prompt: Remove the entire remaining gradient backdrop outside the exact bowl-and-underplate silhouette. Require alpha-zero exterior pixels with antialiased edges, no shadow, halo, floor or checkerboard. Preserve the fish, curry, garnish, bowl and plate exactly, with a transparent margin.
+Final transparent WebP outputs verified to preserve the generated alpha channel.

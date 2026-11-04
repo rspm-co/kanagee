@@ -1,0 +1,5 @@
+{
+  "tool": "Built-in image_gen",
+  "region": "Uttar Maharashtra, replacement requested by the user",
+  "prompt": "Use case: background-extraction and faithful food photo enhancement. Edit the supplied dal-bati photograph. Remove the entire red shaggy fabric background. Isolate the original white plate holding its original golden-brown cut bati pieces and the steel bowl of yellow dal with coriander and whole dried red chillies. Preserve the food, bowl, plate, presentation and elevated camera perspective. Naturally complete only the small clipped plate edges so the entire plate fits with a small clear transparent margin; do not change the dish arrangement or add food. Improve photographic clarity, dal texture, baked bati texture, exposure and natural colours. High-resolution photorealistic cutout. Genuine transparent PNG alpha outside the plate silhouette with clean antialiased edges; no red fabric, gradient backdrop, painted checkerboard, floor, cast shadow outside plate, text, watermark or extra props."
+}

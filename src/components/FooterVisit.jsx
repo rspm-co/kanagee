@@ -1,5 +1,5 @@
 import React from 'react';
-import {ArrowUpRight,Instagram,MapPin} from 'lucide-react';
+import {ArrowUpRight,Instagram,MapPin,Phone} from 'lucide-react';
 import {event} from '../config/event';
 
 export default function FooterVisit(){
@@ -11,6 +11,7 @@ export default function FooterVisit(){
       <a className="footer-map-link" href={mapsUrl} target="_blank" rel="noopener noreferrer">Open in Google Maps<ArrowUpRight size={16} aria-hidden="true"/></a>
     </div></div>
     <div className="footer-social"><span className="eyebrow">A TASTE OF WHAT’S COMING</span><p>Follow the festival on Instagram.</p>
+      <a className="footer-phone" href={'tel:'+event.contact.tel}><Phone size={18} aria-hidden="true"/><span>Toll-free: {event.contact.telephone}</span></a>
       {event.socials.map(social=><a key={social.url} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={'Follow KANAGEE on '+social.name+' (opens in a new tab)'}><Instagram size={20} aria-hidden="true"/><span>{social.handle}</span><ArrowUpRight size={16} aria-hidden="true"/></a>)}
     </div>
   </section>;

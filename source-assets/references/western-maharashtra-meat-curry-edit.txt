@@ -1,0 +1,3 @@
+Built-in image_gen edit.
+Region: Paschim Maharashtra (Western Maharashtra), supplied by the user.
+Prompt: Enhance the supplied bone-in meat curry close-up into a high-resolution photorealistic cutout. Preserve the rich spiced gravy, meat pieces, coriander garnish and natural colours. Remove the beige background and plants. Naturally complete only the outer edges of the tightly cropped white serving plate and immediate dish so it fits with transparent margins. Improve clarity and food detail, without adding other food, side dishes, props, text or decoration. Require genuine alpha transparency and clean antialiased edges with no gradient backdrop or painted checkerboard.

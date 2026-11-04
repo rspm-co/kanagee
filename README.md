@@ -38,7 +38,7 @@ The homepage Gallery follows Experiences and uses a single-row horizontal slider
 
 Assign gallery images by setting `region` in `src/data/gallery.js` to an exact label from `galleryRegions`. Existing photos have `region: null` and appear only under All Maharashtra until assigned. Empty regions show a coming-soon message. Card sizes and the single-row slider are retained.
 
-Ticket CTAs use a soft warm halo and slow light sweep, without a lightning symbol. On the homepage, the signup popup opens after 10 seconds once per browser session. A manual opening also counts as shown; automatic opening waits while another dialog is open, the tab is hidden, or the visitor is typing. It is not shown automatically on About or Admin pages. The popup is dismissible and the CTA can reopen it at any time.
+Ticket CTAs use a soft warm halo and slow light sweep, without a lightning symbol. On the landing and festival pages only, the signup popup opens shortly after load once per browsing session. Session storage prevents automatic repeats after refreshing or navigating between pages. A manual opening also counts as shown; automatic opening waits while another dialog is open, the tab is hidden, or the visitor is typing. It is not shown automatically on About or Admin pages. The popup is dismissible and the CTA can reopen it manually at any time. A matching Register Here button links to the stall-registration page.
 
 ## Ticket-focused landing page
 The root URL `/` opens a compact landing page with the key festival details, a food image, ticket panel and a mobile ticket action. While event.bookingUrl is unset, the primary action opens the existing interest signup; it does not claim tickets are on sale. Set the confirmed event.bookingUrl later to switch the landing CTAs to Book tickets. The full festival website (including regional gallery) is preserved at `/festival/`, with About at `/about/` and the private dashboard at `/admin/`.
@@ -50,7 +50,21 @@ Published PNG images have been converted to WebP. Original PNGs are preserved in
 Production HTML embeds Vite's compiled stylesheet, avoiding the separate render-blocking CSS request while keeping every page styled before React renders. The Google Fonts CSS @import has been removed; its HTML stylesheet link starts with media=print and switches to all after loading, with preconnect hints and display=swap. Fonts stay optional for first paint, with existing system fallbacks. Development continues to use Vite's normal CSS handling. Re-run Lighthouse after deployment to measure actual timing; no fixed millisecond improvement is guaranteed.
 # Static asset caching
 
+## Agent discovery and public information
+
+The production build renders the real React public pages into initial HTML and emits route-specific titles, descriptions, canonicals, one H1 per public page, and Organization/WebSite/WebPage/FoodEvent JSON-LD. Public routes are `/`, `/festival/`, `/about/`, `/contact/`, `/terms/`, and `/privacy/`. Contact information uses the confirmed toll-free number, 1800 210 3696; Instagram is `@kanagee_`. Do not invent booking links, prices, addresses, schedules or contact details.
+
+`src/config/site.js` supplies the public page metadata, Markdown, facts, and informational/legal page copy. Review that copy when business or data-handling practices change. `robots.txt` permits search and AI input, opts out of AI training, declares the sitemap, and excludes admin/API routes. `llms.txt` and per-page `index.md` files are generated during the build. Express negotiates `Accept: text/markdown`, sets `Vary: Accept`, and advertises alternates with Link headers. Cloudflare must not cache HTML and Markdown as the same representation; bypass cache for public documents if a custom “cache everything” rule is used. Existing versioned asset caching is unaffected.
+
+`/mcp` uses the official MCP SDK with a stateless Streamable HTTP transport. Its two tools return public festival and booking information only; no database connection or signup/admin actions are exposed. The SEP-1649-style discovery card is served explicitly at `/.well-known/mcp/server-card.json`, bypassing the general dotfile restriction only for that route. Other dotfiles remain blocked. Browser WebMCP registers the same two information tools when `navigator.modelContext.registerTool` is available; unsupported browsers continue normally. MCP and WebMCP availability does not imply ticket purchasing capability.
+
+Validate with `npm run build` then `npm test`. Tests use an actual MCP SDK client, verify content negotiation and crawler resources, and check all public pages' initial headings, canonical URLs and structured data. Redeploy Hostinger after pushing. The sitemap and discovery URLs are generated for `https://kanagee.com`.
+
 Production builds give images content-based filenames and Vite fingerprints JavaScript and CSS. Express serves those URLs with `Cache-Control: public, max-age=31536000, immutable`. Changing an image changes its URL automatically. HTML and legacy unversioned files revalidate (`no-cache`); all API responses, including admin data and exports, remain `no-store`.
 
 After redeploying Hostinger, check the live response headers. Cloudflare rules must respect the origin Cache-Control headers rather than override them with a shorter browser TTL. The third-party Cloudflare Insights beacon's caching is controlled by Cloudflare, outside this application's response headers.
 
+
+## Stall registration
+
+The Register Here buttons open `/register/`. This page presents the Marathi introduction and stall rules, then embeds the existing Google Form. `src/config/stalls.js` holds its responder and embed URLs. The Open form fallback opens the same form in a new tab, including when sign-in is required. Responses go to the form owner’s existing Google Forms response destination. No separate stall MySQL table, migration, or admin list is required. The website does not submit a hidden copy or report success on behalf of Google Forms. Manage fields, response collection, and notifications in the existing form.

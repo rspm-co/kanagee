@@ -1,0 +1,4 @@
+Built-in image_gen edit.
+Use case: background-extraction.
+Edit target: festival-thali-original.png.
+Prompt: Remove the entire white and gray checkerboard background outside the food, plate, rotis and spoon. Output genuine alpha transparency. Preserve the complete steel plate, all original dishes and their positions, folded rotis, central papad, three gulab jamun, spoon and vegetables. Improve clarity, fine food texture, edge definition and balanced natural lighting. Produce a crisp high-resolution square website hero cutout, retaining the original angle, proportions, contents and arrangement. No additions, text, watermark, opaque background or rectangular shadow.
