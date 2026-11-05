@@ -214,3 +214,123 @@ header.landing-header{display:grid;grid-template-columns:minmax(0,1fr) auto minm
  .landing-header .header-actions{gap:5px}
  .landing-header .header-actions .nav-ticket{font-size:7px;padding:10px 6px;gap:0}
 }
+
+/* Numbered district headquarters keep the state map readable at every size. */
+.geographic-map.district-map{padding:18px 20px}
+.district-map-visual{position:relative}
+.district-map-visual>svg{display:block;width:100%;height:auto;max-height:none;overflow:visible}
+.district-map-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:42px}
+.district-map-heading>.eyebrow{font-size:9px;color:var(--maroon)}
+.district-map-heading .map-compass{position:static;font-size:26px;line-height:1}
+.district-map-heading .map-compass span{font-size:9px;margin-bottom:4px}
+.district-pin{fill:#f7e7a6;stroke:#922420;stroke-width:2}
+.district-number{fill:#6c1d1a;font:700 17px 'DM Sans',sans-serif;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.district-marker.is-selected .district-pin{fill:#fffdf7;stroke:#e4b650;stroke-width:5}
+.district-leader{stroke:#bc8c4b;stroke-width:1.5;fill:none}
+.district-location{fill:#f7e7a6;stroke:#922420;stroke-width:1}
+.district-pune-label{fill:#f7e7a6;font:600 17px 'Noto Sans Devanagari',sans-serif;paint-order:stroke;stroke:#922420;stroke-width:4px;stroke-linejoin:round}
+.district-pune-label tspan{font:600 9px 'DM Sans',sans-serif}
+.district-selection{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 0;border-block:1px solid var(--line);font-size:12px;color:var(--maroon)}
+.district-selection>span{font-size:11px;color:var(--muted)}
+.district-selection>small{margin-left:auto;padding:5px 8px;border-radius:20px;background:#efe0ba;font-size:9px}
+.district-map-key summary{display:flex;align-items:center;justify-content:space-between;min-height:44px;font-size:11px;color:var(--maroon);gap:10px;padding:10px 0}
+.district-map-key summary>span{font-size:20px}
+.district-map-key[open] summary>span{rotate:45deg}
+.district-map-key ol{list-style:none;margin:0 0 14px;padding:4px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:290px;overflow-y:auto;scrollbar-width:thin;overscroll-behavior-y:contain}
+.district-map-key li{min-width:0}
+.district-map-key button{display:flex;align-items:center;gap:8px;width:100%;min-height:48px;border:1px solid #ddcfba;border-radius:7px;padding:8px;text-align:left;background:#fffdf7;color:var(--deep);font-size:10px;line-height:1.45}
+.district-map-key button[aria-pressed=true]{background:#f3e2bd;border-color:#b78747}
+.district-map-key button>span:last-child{min-width:0;overflow-wrap:anywhere}
+.district-map-key button small{display:block;font-size:9px;line-height:1.7;color:var(--muted);margin-top:3px}
+.district-key-number{display:grid;place-items:center;flex-shrink:0;width:25px;height:25px;border-radius:50%;background:var(--maroon);color:#fffdf7;font-size:10px;font-weight:700}
+@media(max-width:760px){
+ .geographic-map.district-map{padding:14px}
+ .district-number{font-size:20px}
+ .district-pune-label{font-size:20px}
+ .district-pune-label tspan{font-size:10px}
+ .district-map-key ol{max-height:255px}
+ .district-selection{gap:7px;font-size:11px}
+ .district-map-heading>.eyebrow{font-size:8px;letter-spacing:.9px}
+ .district-map .geography-caption{font-size:8px}
+}
+
+.district-marker[role=button]{cursor:pointer;outline:none}
+.district-hit-area{fill:transparent;stroke:none}
+.district-marker[role=button]:hover .district-pin,.district-marker[role=button]:focus-visible .district-pin{fill:#fffdf7;stroke:#e4b650;stroke-width:5}
+.district-leader,.district-location,.district-pune-label,.district-marker .city-halo{pointer-events:none}
+.district-pin-tooltip{position:absolute;z-index:3;transform:translate(-50%,calc(-100% - 14px));width:220px;max-width:calc(100% - 12px);padding:12px 14px;border:1px solid #d5b67c;border-radius:10px;background:#fffdf7;color:var(--deep);box-shadow:0 8px 25px #4e171626;pointer-events:none;text-align:center}
+.district-pin-tooltip--below{transform:translate(-50%,14px)}
+.district-pin-tooltip strong{display:block;font-size:13px;line-height:1.5}
+.district-pin-tooltip>span{display:block;font-size:12px;line-height:1.7;margin-top:3px;color:var(--maroon)}
+.district-pin-tooltip small{display:block;font-size:9px;margin-top:5px;color:var(--muted)}
+
+/* Shared editorial rhythm: readable copy, balanced headings, and consistent spacing. */
+:root{--space-section:clamp(36px,4.5vw,64px);--space-content:clamp(20px,2.5vw,36px);--copy-width:62ch}
+.section{padding-block:var(--space-section)}
+:where(h1,h2,h3,h4){text-wrap:balance;overflow-wrap:break-word}
+:where(p,li){text-wrap:pretty}
+.marathi-title{letter-spacing:0;line-height:1.6;margin-block:20px 16px}
+.section-translation{line-height:1.7;letter-spacing:.08em}
+.section-top{flex-wrap:wrap;row-gap:8px}
+.section-top>:last-child{line-height:1.7}
+.hero-copy p,.geography-copy p,.story p,.experiences .intro,.location p,.faq p,
+.intent-value p,.organiser-intro p,.organiser-identity p,.vision-points p{font-size:14px;line-height:1.8}
+.hero-copy p,.geography-copy p,.story p,.intent-heading>p,.about-intro p,
+.chairman-introduction,.chairman-copy,.stall-intro-copy,.information-page p{max-width:var(--copy-width)}
+.hero-actions,.landing-primary-action{flex-wrap:wrap;row-gap:14px}
+.hero-actions>*{flex-shrink:0}
+.story{padding-block:22px}
+.story h3{line-height:1.35;margin-block:10px}
+.story p:last-child,.intent-value p:last-child,.vision-points p:last-child{margin-bottom:0}
+.experience-grid{gap:16px}
+.experience-grid h3{line-height:1.4}
+.experience-grid p{line-height:1.8}
+.experience-grid summary{min-height:56px}
+.geography-layout,.heritage-layout,.our-intent,.organisers{min-width:0}
+.geography-layout>*,.heritage-layout>*,.our-intent>*,.organisers>*,.chairman-vision>*{min-width:0}
+.landing-copy h1{letter-spacing:-.035em;line-height:1.1}
+.landing-description{max-width:50ch;font-size:15px;line-height:1.8}
+.landing-copy .landing-marathi{line-height:1.8;letter-spacing:0}
+.landing-highlights>div{align-items:flex-start}
+.landing-highlights svg,.landing-event-line>svg,.footer-venue>svg{flex-shrink:0}
+.landing-highlights strong{line-height:1.5}
+.landing-highlights small{line-height:1.7;margin-top:5px}
+.landing-ticket-panel h3{line-height:1.3}
+.landing-ticket-panel p{line-height:1.8}
+.landing-ticket-reassurance{align-items:flex-start;line-height:1.6}
+.landing-ticket-reassurance svg{flex-shrink:0;margin-top:3px}
+.gallery-food-title{line-height:1.4;text-wrap:balance}
+.gallery-food-description{line-height:1.75}
+.gallery-food-mr{line-height:1.8;letter-spacing:0}
+.gallery-food-caption{display:flex;flex-direction:column;align-items:flex-start}
+.gallery-food-image img,.chairman-portrait img{display:block}
+.vision-points h3{line-height:1.5;margin-bottom:8px}
+.vision-points li{padding-block:18px}
+.stall-lead,.stall-rules li,.stall-notice{line-height:1.9;letter-spacing:0}
+.stall-rules li+li{margin-top:16px}
+.information-page li{line-height:1.85}
+.information-page h2{line-height:1.25;margin-top:32px;margin-bottom:14px}
+.footer-visit{row-gap:28px}
+.footer-venue p{line-height:1.9}
+.footer-venue h2{line-height:1.35}
+.footer-social p{line-height:1.7}
+.booking h3{line-height:1.4}
+.booking p{line-height:1.8}
+@media(max-width:760px){
+ .section{padding-inline:6%}
+ .marathi-title{font-size:clamp(25px,6.8vw,32px);line-height:1.6;margin-block:16px 12px}
+ .hero-copy p,.geography-copy p,.story p,.location p,.faq p,.intent-value p,
+ .organiser-intro p,.organiser-identity p,.vision-points p{font-size:13px;line-height:1.85}
+ .landing-description{font-size:14px;line-height:1.8}
+ .landing-copy h1{letter-spacing:-.035em}
+ .story{padding-block:18px}
+ .experience-grid{gap:12px}
+ .experience-grid details{padding:16px}
+ .experience-grid h3{font-size:15px}
+ .experience-grid p{font-size:13px}
+ .landing-highlights small{font-size:12px}
+ .vision-points li{padding-block:14px}
+ .stall-rules li{line-height:1.9}
+ .footer-venue p{font-size:12px;line-height:1.9}
+ .gallery-food-title{line-height:1.45}
+}

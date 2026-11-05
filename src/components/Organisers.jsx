@@ -3,17 +3,17 @@ import {Heart, Sprout, Users} from 'lucide-react';
 import {organiser} from '../config/organiser';
 
 const intentions=[
-  {icon:Sprout,title:'मुळाशी नातं',text:'महाराष्ट्राच्या स्थानिक चवी, पारंपरिक पाककृती आणि त्यामागच्या माणसांना एकत्र आणण्याचा प्रयत्न.'},
-  {icon:Users,title:'माणसांना मान',text:'घरगुती स्वयंपाक करणाऱ्या महिला, लघुउद्योजक आणि स्थानिक खाद्यपरंपरा जपणाऱ्या हातांना व्यासपीठ देण्याची इच्छा.'},
-  {icon:Heart,title:'मनापासून केलेला प्रयत्न',text:'दिखाव्यापेक्षा चवीला, संवादाला आणि आपलेपणाला महत्त्व देणारा उत्सव घडवण्याचा आमचा संकल्प.'},
+  {icon:Sprout,title:'मुळाशी नातं',text:'महाराष्ट्राच्या स्थानिक चवी, पारंपरिक पाककृती आणि त्या जपणाऱ्या माणसांना एकाच व्यासपीठावर आणण्याचा आमचा प्रयत्न आहे.'},
+  {icon:Users,title:'माणसांना मान',text:'घरगुती स्वयंपाक करणाऱ्या महिला, लघुउद्योजक आणि स्थानिक खाद्यपरंपरा जपणाऱ्यांच्या कौशल्याला व्यासपीठ देण्याचा आमचा संकल्प आहे.'},
+  {icon:Heart,title:'मनापासून केलेला प्रयत्न',text:'अस्सल चव, मनमोकळा संवाद आणि आपलेपणा जपणारा उत्सव घडवण्याचा आमचा संकल्प आहे.'},
 ];
 
 export function OurIntent(){
   return <section id="our-intent" className="our-intent section" aria-labelledby="intent-title">
     <div className="intent-heading reveal">
       <span className="eyebrow">OUR INTENT · आमची भूमिका</span>
-      <h2 id="intent-title" className="marathi-title" lang="mr">चव अस्सल.<br/><em>प्रयत्न प्रामाणिक.</em></h2>
-      <p lang="mr">कणगी हा केवळ खाद्यमहोत्सव नाही; आपल्या मातीची चव आणि ती जपणारी माणसं यांच्याशी नातं जोडण्याचा एक मनापासून केलेला प्रयत्न आहे.</p>
+      <h2 id="intent-title" className="marathi-title" lang="mr">चव अस्सल,<br/><em>प्रयत्न प्रामाणिक</em></h2>
+      <p lang="mr">कणगीच्या माध्यमातून आपल्या मातीची चव आणि ती जपणाऱ्या माणसांशी नातं जोडण्याचा आमचा मनापासून प्रयत्न आहे.</p>
     </div>
     <div className="intent-values">{intentions.map(({icon:Icon,title,text})=><article className="intent-value reveal" key={title}>
       <span className="intent-icon" aria-hidden="true"><Icon size={19}/></span>
@@ -28,8 +28,8 @@ export function OrganisedBy(){
   return <section id="organisers" className="organisers section" aria-labelledby="organiser-title">
     <div className="organiser-intro reveal">
       <span className="eyebrow">THE PEOPLE BEHIND KANAGEE</span>
-      <h2 id="organiser-title">Organised with heart.</h2>
-      <p lang="mr">आपल्या चवींचा उत्सव. आपल्या माणसांसोबत.</p>
+      <h2 id="organiser-title">The team behind the celebration</h2>
+      <p lang="mr">आपल्या चवींचा उत्सव, आपल्या माणसांसोबत.</p>
     </div>
     <div className="organiser-identity reveal">
       <span className="eyebrow">ORGANISED BY</span>

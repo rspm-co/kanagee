@@ -3,6 +3,7 @@ import {resolve,relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {versionImageUrls} from './versioned-assets.mjs';
 import {createServer} from 'vite';
+import {event,venueFullAddress} from '../src/config/event.js';
 import {publicPages,siteUrl,structuredData,pageMarkdown,festivalFacts} from '../src/config/site.js';
 await mkdir(new URL('../dist/server/',import.meta.url),{recursive:true});
 await mkdir(new URL('../dist/scripts/',import.meta.url),{recursive:true});
@@ -52,6 +53,6 @@ try{
 }finally{stopBuildMotion?.();await renderer.close()}
 await writeFile(new URL('sitemap.xml',output),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+publicPages.map(p=>'<url><loc>'+siteUrl+p.path+'</loc></url>').join('')+'</urlset>\n');
 await writeFile(new URL('robots.txt',output),'User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nContent-Signal: search=yes, ai-input=yes, ai-train=no\n\nSitemap: '+siteUrl+'/sitemap.xml\n');
-await writeFile(new URL('llms.txt',output),'# KANAGEE\n\n> Maharashtra food festival organised by Ladachi Kulfi — R S Papal Group.\n\n3–6 December 2026, 12 PM–9 PM daily, P L Deshpande (Kalagram), Pune. Toll-free: 1800 210 3696. Book through the Ladachi Kulfi mobile app.\n\n## Official pages\n\n'+publicPages.map(p=>'- ['+p.title+']('+siteUrl+p.path+'): '+p.description).join('\n')+'\n\n## Agent resources\n\n- [Markdown home]('+siteUrl+'/index.md)\n- [MCP server card]('+siteUrl+'/.well-known/mcp/server-card.json)\n\nPublic MCP tools only provide festival information; they cannot access signups, administer the site, or book tickets.\n');
+await writeFile(new URL('llms.txt',output),'# KANAGEE\n\n> Maharashtra food festival organised by Ladachi Kulfi — R S Papal Group.\n\n'+event.dates+', '+event.dailyHours+' daily, '+venueFullAddress+'. Toll-free: 1800 210 3696. Book through the Ladachi Kulfi mobile app.\n\n## Official pages\n\n'+publicPages.map(p=>'- ['+p.title+']('+siteUrl+p.path+'): '+p.description).join('\n')+'\n\n## Agent resources\n\n- [Markdown home]('+siteUrl+'/index.md)\n- [MCP server card]('+siteUrl+'/.well-known/mcp/server-card.json)\n\nPublic MCP tools only provide festival information; they cannot access signups, administer the site, or book tickets.\n');
 console.log('Deployment prepared: inlined '+inlineBytes+' bytes of site CSS; fonts load without blocking first paint.');
 await writeFile(new URL('agent-data.json',output),JSON.stringify(festivalFacts()));

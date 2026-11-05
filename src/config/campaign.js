@@ -4,6 +4,6 @@ export const campaign = {
   firstLine: 'MAHARASHTRA’S',
   featureLine: 'BIGGEST',
   closingLine: 'FOOD FESTIVAL',
-  debutMr: 'महाराष्ट्रात प्रथमच!',
-  heritageMr: 'चव महाराष्ट्राची. परंपरा महाराष्ट्राची.',
+  debutMr: 'महाराष्ट्राच्या अस्सल चवींचा उत्सव!',
+  heritageMr: 'चव महाराष्ट्राची, परंपरा महाराष्ट्राची',
 };

@@ -7,7 +7,7 @@ import {createTicketPopupPolicy} from '../data/ticketPopup.js';
 const popupPolicy=createTicketPopupPolicy();
 const signupEndpoint = import.meta.env.VITE_TICKET_INTEREST_URL?.trim() || '/api/ticket-interest';
 
-export default function TicketInterest({label='We are interested',variant='default',onOpen,autoOpen=false}){
+export default function TicketInterest({label='Get ticket updates',variant='default',onOpen,autoOpen=false}){
   const id=useId();
   const titleId=id+'-title',descriptionId=id+'-description',mobileId=id+'-mobile',errorId=id+'-error',consentId=id+'-consent',dialogId=id+'-dialog';
   const dialog=useRef(null);
@@ -37,7 +37,7 @@ export default function TicketInterest({label='We are interested',variant='defau
       const record={mobile:`+91${digits}`,consent:true,purpose:'ticket-launch',createdAt:new Date().toISOString()};
       await saveTicketInterest(signupEndpoint,record);
       setStatus('success');
-    }catch{setError('We could not save your interest. Please try again.');setStatus('idle')}
+    }catch{setError('We could not save your mobile number. Please try again.');setStatus('idle')}
   }
   return <>
     <button type="button" className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'} onClick={open} aria-haspopup="dialog" aria-controls={dialogId}>{variant!=='nav'&&<Bell size={16}/>}<span>{label}</span>{variant==='nav'&&<ArrowUpRight size={14}/>}</button>
@@ -47,19 +47,19 @@ export default function TicketInterest({label='We are interested',variant='defau
       {status==='success'?<div role="status">
         <span className="eyebrow">THANK YOU FOR YOUR INTEREST</span>
         <h2 id={titleId}>You’re on the list!</h2>
-        <p id={descriptionId}>We’ll keep you informed with ticket updates on your mobile number.</p>
+        <p id={descriptionId}>We’ll notify you about ticket availability at the mobile number you provided.</p>
         <button type="button" className="button interest-submit" onClick={close} autoFocus>Done</button>
       </div>:<>
         <span className="eyebrow">{event.bookingUrl?'YOUR TICKET TO KANAGEE':'KANAGEE TICKET UPDATES'}</span>
-        <h2 id={titleId}>Your next delicious plan.</h2>
-        <p id={descriptionId}>Book tickets through the Ladachi Kulfi mobile app. Leave your mobile number for ticket updates.</p>
-        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open daily {event.dailyHours}. Book tickets through the {event.bookingPlatform}.</small>}</div>
-        <div className="popup-stall"><div><strong>Bring your taste to KANAGEE.</strong><span>Apply for a traditional food stall.</span></div><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div>
+        <h2 id={titleId}>Plan your visit to KANAGEE</h2>
+        <p id={descriptionId}>Book tickets through the Ladachi Kulfi mobile app or leave your mobile number for ticket updates.</p>
+        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open daily from {event.dailyHours.replace('–',' to ')}.</small>}</div>
+        <div className="popup-stall"><div><strong>Share your regional speciality</strong><span>Apply for a food stall at KANAGEE.</span></div><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div>
         <form onSubmit={submit}>
           <label htmlFor={mobileId}>Mobile number</label>
-          <div className="interest-phone"><span aria-hidden="true">+91</span><input id={mobileId} name="tel" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Enter mobile number" required maxLength={18} value={mobile} onChange={e=>{setMobile(e.target.value);setError('')}} aria-invalid={!!error} aria-describedby={error?errorId:consentId} disabled={status==='submitting'}/></div>
+          <div className="interest-phone"><span aria-hidden="true">+91</span><input id={mobileId} name="tel" type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Enter your mobile number" required maxLength={18} value={mobile} onChange={e=>{setMobile(e.target.value);setError('')}} aria-invalid={!!error} aria-describedby={error?errorId:consentId} disabled={status==='submitting'}/></div>
           {error&&<p className="interest-error" id={errorId} role="alert">{error}</p>}
-          <p id={consentId} className="interest-consent">By selecting “Notify me”, you agree to receive a ticket-opening update from KANAGEE.</p>
+          <p id={consentId} className="interest-consent">By selecting “Notify me”, you agree to receive a ticket-availability update from KANAGEE.</p>
           <button type="submit" className="button interest-submit" disabled={status==='submitting'}>{status==='submitting'?'Saving…':'Notify me'}<Bell size={16}/></button>
         </form>
       </>}
