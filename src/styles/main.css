@@ -183,3 +183,34 @@ footer{background:var(--deep);color:var(--ivory);padding:30px max(6%,calc((100vw
  .landing-mobile-ticket>div:first-child{display:none}
  .landing-mobile-ticket{justify-content:flex-end}
 }
+
+/* Centre the organiser independently of the brand and booking controls. */
+.sponsor-strip{grid-template-columns:minmax(0,1.25fr) minmax(0,1.15fr) minmax(0,1fr)}
+.sponsor-strip .sponsor-credit--3 .sponsor-logo img{width:230px;height:auto}
+.sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:76px;height:76px}
+.sponsor-strip .sponsor-logo--mla{flex-basis:84px}
+.sponsor-strip .sponsor-logo--mla img{width:84px}
+@media(max-width:600px){
+ .sponsor-strip .sponsor-credit--3 .sponsor-logo img{width:120px;max-width:100%}
+ .sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:44px;height:44px}
+ .sponsor-strip .sponsor-logo--mla{flex-basis:auto}
+ .sponsor-strip .sponsor-logo--mla img{width:50px}
+}
+header.landing-header{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px}
+.landing-organiser{display:flex;align-items:center;justify-content:center;justify-self:center;border-radius:50%;flex-shrink:0}
+.landing-organiser img{display:block;width:64px;height:64px;object-fit:contain}
+.landing-header .landing-nav{justify-self:end;margin-left:0;min-width:0}
+@media(max-width:1100px){.landing-header .landing-nav>a{display:none}}
+@media(max-width:760px){
+ header.landing-header{gap:8px}
+ .landing-organiser img{width:46px;height:46px}
+}
+@media(max-width:480px){
+ header.landing-header{padding-inline:4%;gap:6px}
+ .landing-organiser img{width:40px;height:40px}
+ .landing-header .landing-brand{gap:5px}
+ .landing-header .landing-brand img{height:36px}
+ .landing-header .landing-brand>span{font-size:10px;letter-spacing:1px}
+ .landing-header .header-actions{gap:5px}
+ .landing-header .header-actions .nav-ticket{font-size:7px;padding:10px 6px;gap:0}
+}
