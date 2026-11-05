@@ -9,7 +9,7 @@ sources = root / 'source-assets' / 'images'
 sources.mkdir(parents=True, exist_ok=True)
 files = {p.name: p for p in sources.glob('*.png')}
 files.update({p.name: p for p in public.glob('*.png')})
-logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo', 'udyami-maharashtra-logo', 'mea-logo', 'travelyfoodie-logo'}
+logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo', 'udyami-maharashtra-logo', 'mea-logo', 'travelyfoodie-logo', 'mla-logo'}
 responsive = {'heritage-thali-cutout', 'experience-thali-cutout', 'seafood-platter', 'festival-thali', 'konkan-fried-fish', 'konkan-fish-curry', 'western-maharashtra-meat-curry', 'western-maharashtra-thali', 'vidarbha-saoji-thali', 'marathwada-dhapate-thali', 'uttar-maharashtra-khandeshi-thali', 'uttar-maharashtra-dal-bati'}
 results = []
 for name, path in sorted(files.items()):
@@ -18,6 +18,8 @@ for name, path in sorted(files.items()):
         image = image.convert('RGBA' if 'A' in image.getbands() else 'RGB')
         if path.stem == 'travelyfoodie-logo':
             image.thumbnail((256, 256), Image.Resampling.LANCZOS)
+        if path.stem == 'mla-logo':
+            image.thumbnail((320, 320), Image.Resampling.LANCZOS)
         target = public / (path.stem + '.webp')
         options = {'format': 'WEBP', 'method': 6, 'exact': True}
         if path.stem in logos:
