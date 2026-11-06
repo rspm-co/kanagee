@@ -40,7 +40,7 @@ export default function TicketInterest({label='Get ticket updates',variant='defa
     }catch{setError('We could not save your mobile number. Please try again.');setStatus('idle')}
   }
   return <>
-    <button type="button" className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'} onClick={open} aria-haspopup="dialog" aria-controls={dialogId}>{variant!=='nav'&&<Bell size={16}/>}<span>{label}</span>{variant==='nav'&&<ArrowUpRight size={14}/>}</button>
+    {event.bookingUrl?<a href={event.bookingUrl} className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'}><span>{label==='Get ticket updates'?'Book tickets':label}</span><ArrowUpRight size={14}/></a>:<button type="button" className={(variant==='nav'?'nav-ticket':'button interest-button')+' ticket-spark'} onClick={open} aria-haspopup="dialog" aria-controls={dialogId}>{variant!=='nav'&&<Bell size={16}/>}<span>{label}</span>{variant==='nav'&&<ArrowUpRight size={14}/>}</button>}
     <dialog ref={dialog} id={dialogId} className="interest-dialog" aria-labelledby={titleId} aria-describedby={descriptionId} onCancel={e=>{if(status==='submitting')e.preventDefault()}} onClick={e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()}}}>
       <button type="button" className="interest-close" aria-label="Close popup" onClick={close} disabled={status==='submitting'} autoFocus><X size={20}/></button>
       <span className="interest-icon" aria-hidden="true">{status==='success'?<Check size={24}/>:<Bell size={24}/>}</span>

@@ -17,7 +17,7 @@ function EventMarquee({paused}){
 }
 
 function TicketAction({compact=false,autoOpen=false}){
- return event.bookingUrl?<a href={event.bookingUrl} className={'button ticket-spark '+(compact?'nav-ticket':'landing-book-button')}>Book tickets<ArrowUpRight size={17}/></a>:<TicketInterest label={compact?'TICKET INFO':'Get ticket updates'} variant={compact?'nav':'default'} autoOpen={autoOpen}/>;
+ return event.bookingUrl?<a href={event.bookingUrl} className={'button ticket-spark '+(compact?'nav-ticket':'landing-book-button')}>{compact?'TICKET INFO':'Book tickets'}<ArrowUpRight size={17}/></a>:<TicketInterest label={compact?'TICKET INFO':'Get ticket updates'} variant={compact?'nav':'default'} autoOpen={autoOpen}/>;
 }
 export default function LandingPage({paused=false,footer}){
  const root=useRef(null);
