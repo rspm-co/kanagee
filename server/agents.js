@@ -12,7 +12,7 @@ export function agentRoutes({staticDirectory,origin}){
   const facts=JSON.parse(readFileSync(join(staticDirectory,'agent-data.json'),'utf8'));
   const serverInfo={name:'kanagee-festival',title:'KANAGEE Public Festival Information',version:'1.0.0'};
   const tools=[
-    {name:'kanagee_festival_details',description:'Read confirmed KANAGEE dates, daily hours, venue, organisers, experiences and contact details.',result:()=>facts},
+    {name:'kanagee_festival_details',description:'Read confirmed KANAGEE dates, hours, venue, organisers, experiences and contact details.',result:()=>facts},
     {name:'kanagee_booking_info',description:'Read official ticket-booking guidance and contact details. Does not book tickets or collect personal information.',result:()=>({tickets:facts.tickets,telephone:facts.telephone,website:'https://kanagee.com/'})},
   ];
   router.get('/.well-known/mcp/server-card.json',(_req,res)=>res.set({'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET','Access-Control-Allow-Headers':'Content-Type','Cache-Control':'public, max-age=3600'}).json({

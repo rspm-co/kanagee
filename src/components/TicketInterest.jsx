@@ -53,7 +53,7 @@ export default function TicketInterest({label='Get ticket updates',variant='defa
         <span className="eyebrow">{event.bookingUrl?'YOUR TICKET TO KANAGEE':'KANAGEE TICKET UPDATES'}</span>
         <h2 id={titleId}>Plan your visit to KANAGEE</h2>
         <p id={descriptionId}>Book tickets through the Ladachi Kulfi mobile app or leave your mobile number for ticket updates.</p>
-        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open daily from {event.dailyHours.replace('–',' to ')}.</small>}</div>
+        <div className="popup-event"><strong>{event.name} · {event.dates}</strong><span><MapPin size={13}/>{event.venue}, {event.city}</span>{event.bookingUrl?<a href={event.bookingUrl} className="text-link">Book tickets <ArrowUpRight size={14}/></a>:<small>Open from {event.dailyHours.replace('–',' to ')}.</small>}</div>
         <div className="popup-stall"><div><strong>Share your regional speciality</strong><span>Apply for a food stall at KANAGEE.</span></div><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div>
         <form onSubmit={submit}>
           <label htmlFor={mobileId}>Mobile number</label>
