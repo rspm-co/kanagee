@@ -49,7 +49,7 @@ test('MCP card describes working public tools and SDK clients can initialize and
  try{
   await client.connect(new StreamableHTTPClientTransport(new URL(base+'/mcp')));
   const {tools}=await client.listTools();assert.deepEqual(tools.map(t=>t.name).sort(),card.tools.map(t=>t.name).sort());
-  const result=await client.callTool({name:'kanagee_festival_details',arguments:{}});const facts=JSON.parse(result.content[0].text);assert.equal(facts.name,'KANAGEE');assert.equal(facts.telephone,'1800 210 3696');assert.equal(facts.dailyHours,'12 PM–9 PM');assert.equal(facts.tickets.url,null);
+  const result=await client.callTool({name:'kanagee_festival_details',arguments:{}});const facts=JSON.parse(result.content[0].text);assert.equal(facts.name,'KANAGEE');assert.equal(facts.telephone,'1800 210 3696');assert.equal(facts.dailyHours,'12 PM–9 PM');assert.equal(facts.tickets.url,'https://booking.kanagee.com/e/kanagee');
   const booking=await client.callTool({name:'kanagee_booking_info',arguments:{}});assert.equal(JSON.parse(booking.content[0].text).tickets.platform,'Ladachi Kulfi mobile app');
   const invalid=await client.callTool({name:'kanagee_festival_details',arguments:{mobile:'+919876543210'}});assert.equal(invalid.isError,true);
  }finally{await client.close()}

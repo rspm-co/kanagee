@@ -17,7 +17,7 @@ function EventMarquee({paused}){
 }
 
 function TicketAction({compact=false,autoOpen=false}){
- return event.bookingUrl?<a href={event.bookingUrl} className={'button ticket-spark '+(compact?'nav-ticket':'landing-book-button')}>{compact?'TICKET INFO':'Book tickets'}<ArrowUpRight size={17}/></a>:<TicketInterest label={compact?'TICKET INFO':'Get ticket updates'} variant={compact?'nav':'default'} autoOpen={autoOpen}/>;
+ return event.bookingUrl?<a href={event.bookingUrl} className={'button ticket-spark '+(compact?'nav-ticket':'landing-book-button')}>{compact?'Book Ticket':'Book tickets'}<ArrowUpRight size={17}/></a>:<TicketInterest label={compact?'Book Ticket':'Get ticket updates'} variant={compact?'nav':'default'} autoOpen={autoOpen}/>;
 }
 export default function LandingPage({paused=false,footer}){
  const root=useRef(null);
@@ -37,7 +37,7 @@ export default function LandingPage({paused=false,footer}){
  },[paused]);
  return <div className="landing-page" ref={root}>
   <a className="skip" href="#main">Skip to content</a>
-  <header className="landing-header"><a className="official-brand landing-brand" href="/" aria-label="KANAGEE home"><img src="/kanagee-logo-transparent-256w.webp" srcSet="/kanagee-logo-transparent-128w.webp 128w, /kanagee-logo-transparent-256w.webp 256w" sizes="80px" width="1205" height="1306" alt="कणगी — KANAGEE"/><span>KANAGEE<small lang="mr">अस्सल महाराष्ट्राचा खाद्यमहोत्सव</small></span></a><a className="landing-organiser" href="/about/#organisers" aria-label="Ladachi Kulfi — organiser of KANAGEE"><img src="/ladachi-kulfi-logo.webp" width="256" height="256" alt="Ladachi Kulfi" decoding="async"/></a><div className="landing-nav"><a href="/festival/">The festival</a><a href="/about/">About us</a><div className="header-actions"><TicketAction compact/><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div></div></header>
+  <header className="landing-header"><a className="official-brand landing-brand" href="/" aria-label="KANAGEE home"><img src="/kanagee-logo-transparent-256w.webp" srcSet="/kanagee-logo-transparent-128w.webp 128w, /kanagee-logo-transparent-256w.webp 256w" sizes="80px" width="1205" height="1306" alt="कणगी — KANAGEE"/><span>KANAGEE<small lang="mr">अस्सल महाराष्ट्राचा खाद्यमहोत्सव</small></span></a><a className="landing-organiser" href="/about/#organisers" aria-label="Ladachi Kulfi — organiser of KANAGEE"><span className="header-organiser-label">Organised by</span><img src="/ladachi-kulfi-logo.webp" width="256" height="256" alt="Ladachi Kulfi" decoding="async"/></a><div className="landing-nav"><a href="/festival/">The festival</a><a href="/about/">About KANAGEE</a><div className="header-actions"><TicketAction compact/><a className="nav-ticket ticket-spark register-button" href="/register/"><span>Stall booking</span><ArrowUpRight size={17} aria-hidden="true"/></a></div></div></header>
   <main id="main">
    <SponsorStrip/>
    <EventMarquee paused={paused}/>

@@ -187,14 +187,14 @@ footer{background:var(--deep);color:var(--ivory);padding:30px max(6%,calc((100vw
 /* Centre the organiser independently of the brand and booking controls. */
 .sponsor-strip{grid-template-columns:minmax(0,1.25fr) minmax(0,1.15fr) minmax(0,1fr)}
 .sponsor-strip .sponsor-credit--3 .sponsor-logo img{width:230px;height:auto}
-.sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:76px;height:76px}
-.sponsor-strip .sponsor-logo--mla{flex-basis:84px}
-.sponsor-strip .sponsor-logo--mla img{width:84px}
+.sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:88px;height:88px}
+.sponsor-strip .sponsor-logo--mla{flex-basis:96px}
+.sponsor-strip .sponsor-logo--mla img{width:96px}
 @media(max-width:600px){
  .sponsor-strip .sponsor-credit--3 .sponsor-logo img{width:120px;max-width:100%}
- .sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:44px;height:44px}
+ .sponsor-strip .sponsor-credit--2 .sponsor-logo--travelyfoodie img{width:52px;height:52px}
  .sponsor-strip .sponsor-logo--mla{flex-basis:auto}
- .sponsor-strip .sponsor-logo--mla img{width:50px}
+ .sponsor-strip .sponsor-logo--mla img{width:58px}
 }
 header.landing-header{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px}
 .landing-organiser{display:flex;align-items:center;justify-content:center;justify-self:center;border-radius:50%;flex-shrink:0}
@@ -333,4 +333,267 @@ header.landing-header{display:grid;grid-template-columns:minmax(0,1fr) auto minm
  .stall-rules li{line-height:1.9}
  .footer-venue p{font-size:12px;line-height:1.9}
  .gallery-food-title{line-height:1.45}
+}
+
+/* A compact ambassador feature, separate from the sponsor hierarchy. */
+.brand-ambassador{display:flex;align-items:center;gap:24px;padding:24px max(6%,calc((100vw - 1160px)/2));background:#f6efdf;border-bottom:1px solid var(--line)}
+.brand-ambassador>img{width:92px;height:94px;object-fit:contain;flex-shrink:0}
+.brand-ambassador-copy{flex:1;min-width:0}
+.brand-ambassador .eyebrow{color:var(--maroon);font-size:10px;letter-spacing:1.5px}
+.brand-ambassador h2{font-family:'DM Sans',sans-serif;font-size:clamp(22px,2.3vw,30px);font-weight:600;line-height:1.3;letter-spacing:-.025em;margin:7px 0}
+.brand-ambassador p{font-size:13px;line-height:1.7;margin:0}
+.brand-ambassador>.button{min-height:44px;flex-shrink:0;gap:16px}
+@media(max-width:600px){
+ .brand-ambassador{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px 16px;padding-block:20px}
+ .brand-ambassador>img{width:72px;height:74px;grid-row:1/3;align-self:start}
+ .brand-ambassador-copy{grid-column:2}
+ .brand-ambassador .eyebrow{font-size:8px;letter-spacing:1px}
+ .brand-ambassador h2{font-size:21px;margin-block:5px}
+ .brand-ambassador p{font-size:12px}
+ .brand-ambassador>.button{grid-column:2;justify-self:start;font-size:11px;padding:12px 16px}
+}
+.brand-ambassador .brand-ambassador-name{color:var(--maroon);font-weight:600;margin-bottom:4px}
+.about-intro .about-business-description{margin-bottom:20px;max-width:65ch}
+
+/* Portrait trial: a compact editorial feature below the sponsor strip. */
+.brand-ambassador{gap:32px;padding-block:24px}
+.brand-ambassador-portrait{margin:0;width:180px;height:216px;flex-shrink:0;overflow:hidden;border-radius:90px 90px 16px 16px;border:1px solid #dfc9a7;box-shadow:0 8px 24px #4e171610;background:#dedbd9}
+.brand-ambassador-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.brand-ambassador-identity{display:flex;gap:10px;align-items:center;margin:10px 0}
+.brand-ambassador-identity img{width:42px;height:43px;object-fit:contain;flex-shrink:0}
+.brand-ambassador .brand-ambassador-name{margin:0}
+.brand-ambassador-copy>p:last-child{max-width:44ch}
+@media(max-width:600px){
+ .brand-ambassador{grid-template-columns:112px minmax(0,1fr);gap:12px 18px;padding-block:22px}
+ .brand-ambassador-portrait{width:112px;height:166px;grid-row:1/3;border-radius:56px 56px 12px 12px;align-self:center}
+ .brand-ambassador h2{font-size:23px;line-height:1.25}
+ .brand-ambassador-identity{gap:7px;margin:8px 0}
+ .brand-ambassador-identity img{width:32px;height:33px}
+ .brand-ambassador .brand-ambassador-name{font-size:11px}
+ .brand-ambassador>.button{padding:11px 13px;font-size:10px}
+}
+
+@media(max-width:600px){
+ .brand-ambassador{grid-template-columns:minmax(0,1fr) 112px}
+ .brand-ambassador-copy{grid-column:1;grid-row:1}
+ .brand-ambassador-portrait{grid-column:2;grid-row:1/3}
+ .brand-ambassador>.button{grid-column:1;grid-row:2}
+}
+
+/* Keep the ambassador identity and portrait together, opposite the booking action. */
+.brand-ambassador>.button{order:-1;margin-right:auto}
+.brand-ambassador-copy{flex:0 1 360px}
+@media(max-width:600px){
+ .brand-ambassador{grid-template-columns:minmax(0,1fr) 112px}
+ .brand-ambassador>.button{grid-column:1/-1;grid-row:1;justify-self:start;margin-right:0}
+ .brand-ambassador-copy{grid-column:1;grid-row:2;align-self:center}
+ .brand-ambassador-portrait{grid-column:2;grid-row:2}
+}
+
+.ambassador-app-download{order:-1;margin-right:auto;max-width:300px}
+.ambassador-app-download h3{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:600;line-height:1.35;letter-spacing:-.025em;margin:9px 0}
+.ambassador-app-download>a{display:inline-flex;min-height:44px;margin:8px 0 0 -10px;border-radius:8px}
+.ambassador-app-download>a img{display:block;width:174px;height:auto;object-fit:contain}
+@media(max-width:600px){
+ .ambassador-app-download{grid-column:1/-1;grid-row:1;max-width:none;margin:0 0 10px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+ .ambassador-app-download h3{font-size:21px}
+ .ambassador-app-download>a img{width:166px}
+}
+
+.ambassador-book-circle{order:-1;position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;width:138px;height:138px;margin-inline:auto;border:1px solid #efca76;border-radius:50%;background:var(--maroon);color:var(--ivory);text-align:center;box-shadow:0 0 0 7px #e3b55c20,0 0 32px #c78a3650;transition:background .2s,box-shadow .2s}
+.ambassador-book-circle:before{content:'';position:absolute;inset:-9px;border:1px solid #d9aa59;border-radius:50%;pointer-events:none;animation:ambassador-ticket-glow 2.6s ease-out infinite}
+.ambassador-book-circle>span{font-size:20px;font-weight:700;line-height:1.18;margin-top:4px}
+.ambassador-book-circle>small{font-size:7px;font-weight:600;letter-spacing:1.1px;margin-top:8px}
+.ambassador-book-circle:hover{background:var(--deep);box-shadow:0 0 0 9px #e3b55c30,0 0 40px #c78a3666}
+.brand-ambassador .ambassador-app-download{order:-2;margin-right:0}
+@keyframes ambassador-ticket-glow{0%{transform:scale(.97);opacity:.8}85%,100%{transform:scale(1.16);opacity:0}}
+.site-shell[data-motion="paused"] .ambassador-book-circle:before{animation:none}
+@media(max-width:900px) and (min-width:601px){.ambassador-book-circle{width:110px;height:110px}.ambassador-book-circle>span{font-size:17px}.ambassador-book-circle>small{font-size:6px;letter-spacing:.6px}.brand-ambassador{gap:20px}}
+@media(max-width:600px){
+ .brand-ambassador .ambassador-app-download{grid-row:1}
+ .ambassador-book-circle{grid-column:1/-1;grid-row:2;justify-self:center;width:116px;height:116px;margin:8px 0 20px}
+ .ambassador-book-circle>span{font-size:18px}
+ .brand-ambassador-copy{grid-row:3}
+ .brand-ambassador-portrait{grid-row:3}
+}
+@media(prefers-reduced-motion:reduce){.ambassador-book-circle:before{animation:none}}
+
+@media(min-width:901px){.ambassador-book-circle{left:-28px}}
+@media(min-width:601px) and (max-width:900px){.ambassador-book-circle{left:-12px}}
+
+/* A short arrival pop followed by a gentle pulse draws attention to booking. */
+.ambassador-book-circle{animation:ticket-circle-arrive .6s cubic-bezier(.2,.8,.25,1.25) both,ticket-circle-pulse 2.8s ease-in-out .8s infinite;transform-origin:center}
+@keyframes ticket-circle-arrive{from{transform:scale(.72);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes ticket-circle-pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.055)}70%{transform:scale(.985)}}
+.ambassador-book-circle:hover,.ambassador-book-circle:focus-visible{animation:none;transform:scale(1.04)}
+.site-shell[data-motion="paused"] .ambassador-book-circle{animation:none;transform:none}
+@media(prefers-reduced-motion:reduce){.ambassador-book-circle{animation:none;transform:none}}
+
+.landing-organiser{flex-direction:column;gap:3px;border-radius:6px}
+.header-organiser-label{font-size:8px;font-weight:600;line-height:1.2;letter-spacing:.6px;color:var(--muted);white-space:nowrap}
+.landing-organiser img{width:56px;height:56px}
+@media(max-width:760px){.header-organiser-label{font-size:7px;letter-spacing:.2px}.landing-organiser img{width:42px;height:42px}}
+@media(max-width:480px){.header-organiser-label{font-size:6px}.landing-organiser img{width:36px;height:36px}}
+
+.ambassador-app-download>a.ladachi-order-link{margin:16px 0 0;padding:13px 18px;gap:14px;align-items:center;border-radius:7px;font-size:12px;letter-spacing:0}
+
+/* Booking remains the sole call to action while the kulfi promotion is hidden. */
+.brand-ambassador .ambassador-book-circle{left:0;border-radius:24px;margin:0 auto 0 0}
+.ambassador-book-circle:before{border-radius:30px}
+@media(max-width:600px){
+ .brand-ambassador .ambassador-book-circle{grid-row:1;justify-self:start;margin:0 0 16px;border-radius:22px}
+ .brand-ambassador-copy,.brand-ambassador-portrait{grid-row:2}
+}
+
+.brand-ambassador .ambassador-book-circle{width:220px;height:112px;border-radius:18px}
+.ambassador-book-circle:before{border-radius:24px}
+.ambassador-book-circle>span br{display:none}
+.ambassador-book-circle>span{display:flex;gap:.25em;font-size:22px}
+@media(max-width:900px){.brand-ambassador .ambassador-book-circle{width:180px;height:100px}.ambassador-book-circle>span{font-size:20px}}
+
+.brand-ambassador-identity img{width:54px;height:55px}
+@media(max-width:600px){.brand-ambassador-identity img{width:42px;height:43px}}
+
+.brand-ambassador .ambassador-book-circle{margin-right:0}
+.ambassador-invitation{flex:1;min-width:0;text-align:center;padding-inline:8px}
+.ambassador-invitation>span{display:block;color:#b3863f;font-size:26px;line-height:1;margin-bottom:12px}
+.brand-ambassador .ambassador-invitation p{font-family:'Noto Sans Devanagari',sans-serif;font-size:clamp(20px,2vw,28px);font-weight:600;line-height:1.65;color:var(--maroon);margin:0}
+.ambassador-invitation>small{display:block;font-size:11px;line-height:1.8;color:var(--muted);margin-top:8px}
+@media(max-width:900px) and (min-width:601px){.brand-ambassador .ambassador-invitation p{font-size:18px}.ambassador-invitation>small{font-size:9px}.brand-ambassador{flex-wrap:wrap}.brand-ambassador-copy{flex:1}.ambassador-invitation{flex-basis:180px}}
+@media(max-width:600px){
+ .brand-ambassador .ambassador-book-circle{grid-column:1/-1;grid-row:1;justify-self:center}
+ .ambassador-invitation{grid-column:1/-1;grid-row:2;padding:0 0 20px}
+ .brand-ambassador .ambassador-invitation p{font-size:23px}
+ .ambassador-invitation>span{font-size:22px;margin-bottom:8px}
+ .brand-ambassador-copy,.brand-ambassador-portrait{grid-row:3}
+}
+
+/* Compact the ambassador band so the following moving strip stays in view. */
+.brand-ambassador{padding-block:12px;gap:24px}
+.brand-ambassador-portrait{width:148px;height:176px;border-radius:74px 74px 14px 14px}
+.brand-ambassador-identity{margin-block:7px}
+.brand-ambassador h2{margin-block:5px}
+.brand-ambassador-copy>p:last-child{line-height:1.65}
+.ambassador-invitation{padding-block:0}
+@media(max-width:600px){
+ .brand-ambassador{padding-block:16px;gap:16px;grid-template-columns:minmax(0,1fr) 112px}
+ .brand-ambassador .ambassador-book-circle{grid-column:1;grid-row:1;justify-self:start;width:146px;height:84px;margin:0}
+ .ambassador-book-circle>span{font-size:18px}
+ .ambassador-book-circle>small{margin-top:5px;font-size:6px}
+ .ambassador-book-circle>svg{width:19px;height:19px}
+ .ambassador-invitation{grid-column:2;grid-row:1;padding:0;align-self:center}
+ .brand-ambassador .ambassador-invitation p{font-size:15px;line-height:1.7}
+ .brand-ambassador-copy{grid-column:1;grid-row:2}
+ .brand-ambassador-portrait{grid-column:2;grid-row:2;width:112px;height:148px;border-radius:56px 56px 12px 12px}
+ .brand-ambassador h2{font-size:21px}
+}
+
+/* Site-wide compact rhythm: content determines height, with clear section breaks. */
+:root{--space-section:clamp(28px,3.4vw,46px)}
+.section{padding-block:var(--space-section)}
+.sponsor-strip{padding-block:12px}
+.sponsor-strip .sponsor-logo-row{min-height:0}
+.landing-hero{min-height:0;padding-block:28px;column-gap:32px}
+.landing-copy .landing-booking-note{margin-block:10px 14px}
+.landing-highlights{padding-block:20px}
+.landing-booking{padding-block:36px;column-gap:40px}
+.landing-booking h2{margin-block:12px 18px}
+.landing-ticket-panel{padding:26px}
+.hero-copy{padding-block:26px}
+.geography-layout{gap:36px;margin-top:16px}
+.heritage-heading{--plate-size:clamp(260px,28vw,360px);margin-block:10px 16px}
+.heritage-layout{gap:32px}
+.story{padding-block:16px}
+.our-intent,.organisers{column-gap:36px;row-gap:24px}
+.intent-value{padding-block:16px}
+.chairman-vision{gap:28px;padding-top:26px;margin-top:0}
+.vision-points{gap:12px 20px}
+.vision-points li{padding-block:12px}
+.about-intro>.text-link{margin-bottom:20px}
+.about-intro h1{margin-block:16px}
+.about-intro .about-business-description{margin-bottom:14px}
+.about-invitation{gap:20px}
+.experience-grid{margin-top:18px;gap:12px}
+.experience-grid details{padding:18px}
+.gallery-intro{margin-top:18px}
+.gallery-disclaimer{margin-block:12px 0}
+.booking{padding:22px;gap:20px}
+.location{column-gap:36px}
+.faq details{padding-block:13px}
+.stall-layout{gap:32px}
+.stall-intro-copy{margin-block:18px}
+.stall-intro-copy p{line-height:1.85;margin-bottom:14px}
+.stall-layout h2{margin-block:10px 16px}
+.information-page{min-height:0;padding-block:30px}
+.information-page h1{margin-block:20px 14px}
+.information-page>section{margin-top:22px}
+.information-page h2{margin-block:22px 10px}
+.footer-visit{padding-block:24px;column-gap:32px}
+.footer-bottom{margin-top:18px;padding-top:14px}
+@media(max-width:760px){
+ .landing-hero{padding-block:22px;gap:18px}
+ .landing-highlights{padding-block:18px}
+ .landing-booking{padding-block:28px;gap:20px}
+ .landing-ticket-panel{padding:22px}
+ .hero-copy{padding-block:20px}
+ .geography-layout{gap:20px}
+ .heritage-heading{--plate-size:230px;min-height:0;padding-right:0;padding-bottom:238px;margin-block:14px}
+ .heritage-layout{gap:12px}
+ .story{padding-block:14px}
+ .our-intent,.organisers{gap:22px}
+ .chairman-vision{gap:20px;padding-top:22px}
+ .vision-points{gap:10px 16px}
+ .about-intro>.text-link{margin-bottom:16px}
+ .about-intro h1{margin-block:14px}
+ .about-invitation{gap:16px}
+ .experience-grid details{padding:16px}
+ .location .faq{margin-top:20px}
+ .stall-layout{gap:24px}
+ .stall-intro-copy{margin-block:16px}
+ .footer-visit{padding-block:20px;row-gap:22px}
+}
+
+.heritage-photo.heritage-photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:transparent;overflow:visible;border-radius:0;align-items:stretch}
+.heritage-photo-pair img{width:100%;height:100%;max-height:380px;aspect-ratio:2/3;object-fit:cover;border-radius:14px;min-width:0}
+@media(max-width:760px){.heritage-photo.heritage-photo-pair{max-width:480px;gap:8px}.heritage-photo-pair img{max-height:300px;border-radius:12px}}
+
+/* A tighter Heart of the Kitchen section, without large empty support cards. */
+.women.section{padding-block:30px;gap:32px;grid-template-columns:.9fr 1.1fr}
+.women-art.women-support{padding:20px}
+.women-support>.eyebrow{margin-bottom:10px}
+.women-support .woven{font-size:28px;line-height:1.55}
+.women-support-grid{margin-top:14px;gap:10px}
+.women-support-card{min-height:134px;padding:12px;gap:5px}
+.women-support-amount{font-size:38px}
+.women-support-card strong{font-size:17px;line-height:1.6}
+.women-support-growth{height:45px;width:45px;margin-bottom:0}
+.women .women-support-note{margin-block:12px;line-height:1.8}
+.women .marathi-title{font-size:clamp(25px,2.6vw,34px);line-height:1.5;margin-block:12px}
+.women .section-translation{margin-bottom:12px}
+.women h3{margin-bottom:12px}
+.women h4{margin-top:12px}
+.women .tiny{margin-top:12px}
+@media(max-width:760px){
+ .women.section{grid-template-columns:1fr;padding-block:26px;gap:20px}
+ .women-art.women-support{padding:16px}
+ .women-support .woven{font-size:25px;line-height:1.5}
+ .women-support-card{min-height:120px;padding:11px;gap:4px}
+ .women-support-grid{margin-top:12px}
+ .women-support-card strong{font-size:16px}
+ .women-support-card>span:last-child{line-height:1.6}
+ .women .marathi-title{font-size:26px}
+}
+
+/* Shared handover tokens and final type consistency across content sections. */
+:root{--font-body-size:14px;--font-caption-size:11px;--radius-card:16px;--radius-control:8px;--space-unit:4px}
+.women p,.story p,.vision-points p,.experience-grid p,.faq p,.booking p{font-size:var(--font-body-size);line-height:1.8}
+.women .women-support-note{font-size:11px;line-height:1.8}
+.food-gallery-card,.experience-grid details,.booking,.chairman-portrait,.heritage-photo-pair img{border-radius:var(--radius-card)}
+.button,.nav-ticket,.landing-explore-button{border-radius:var(--radius-control)}
+.landing-ticket-panel,.booking,.experience-grid details,.intent-value,.vision-points li{overflow-wrap:break-word}
+.women .women-support-note,.gallery-disclaimer,.booking .tiny{max-width:65ch}
+@media(max-width:760px){
+ :root{--font-body-size:13px}
+ .women p,.story p,.vision-points p,.experience-grid p,.faq p,.booking p{font-size:var(--font-body-size)}
+ .women .women-support-note{font-size:11px}
 }

@@ -8,7 +8,7 @@ export const publicPages=[
   {path:'/register/',title:'KANAGEE — Stall Registration · स्टॉल नोंदणी',description:'Apply for a traditional Maharashtrian food stall at KANAGEE. Read the participation requirements, service-charge information, and application details.'},
   {path:'/',title:'KANAGEE — Maharashtra Food Festival · Plan Your Visit',description:'Explore Maharashtra’s flavours at KANAGEE from '+event.dates+' at '+event.venue+', Pune. Open 12 PM–9 PM . Book through the Ladachi Kulfi mobile app.'},
   {path:'/festival/',title:'Explore KANAGEE — Food, Culture & Experiences',description:'Discover regional food, women-led kitchens, the gallery, and confirmed business talks and conferences at KANAGEE in Pune.'},
-  {path:'/about/',title:'About KANAGEE — Our Organisers & Vision',description:'Discover the vision behind KANAGEE, organised by Ladachi Kulfi — R S Papal Group to celebrate Maharashtra’s food heritage.'},
+  {path:'/about/',title:'About KANAGEE — Our Organisers & Vision',description:'KANAGEE is a food and catering brand that also organises food festivals and events, celebrating Maharashtra’s culinary heritage.'},
   {path:'/contact/',title:'Contact KANAGEE — Help & Venue',description:'Call KANAGEE toll-free on 1800 210 3696. Find the festival venue, visiting hours, and official Instagram profile.'},
   {path:'/terms/',title:'KANAGEE — Website & Booking Information',description:'Website information, app booking guidance, and content-use terms for KANAGEE visitors.'},
   {path:'/privacy/',title:'KANAGEE — Privacy Information',description:'How the KANAGEE website uses ticket-interest mobile numbers, analytics, and browser storage.'},

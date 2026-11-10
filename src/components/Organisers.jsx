@@ -39,8 +39,8 @@ export function OrganisedBy(){
     </div>
     {showChairman&&<article className="chairman-vision" aria-labelledby="chairman-heading">
       <figure className="chairman-portrait">
-        <img src={chairman.photo} alt={chairman.name||'Chairman of R S Papal Group'} loading="lazy" decoding="async" width="400" height="400"/>
-        <figcaption>{chairman.name&&<strong>{chairman.name}</strong>}<span>{chairman.designation} · {organiser.group}</span></figcaption>
+        <img src={chairman.photo} alt={chairman.name||'Director of R S Papal Marketing Pvt Ltd'} loading="lazy" decoding="async" width="400" height="400"/>
+        <figcaption>{chairman.name&&<strong>{chairman.name}</strong>}<span>{chairman.designation}, {chairman.company}</span></figcaption>
       </figure>
       <div className="chairman-vision-content">
         <span className="eyebrow">THE VISION BEHIND OUR CELEBRATION</span>

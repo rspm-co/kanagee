@@ -3,10 +3,11 @@ export const organiser = {
   group: 'R S Papal Group',
   chairman: {
     name: 'Mr. Rahul Shivaji Papal',
-    designation: 'Chairman',
+    designation: 'Director',
+    company: 'R S Papal Marketing Pvt Ltd',
     photo: '/chairman-portrait.webp',
     message: '',
-    visionTitle: 'Our Chairman’s Vision',
+    visionTitle: 'Our Director’s Vision',
     introduction: 'KANAGEE — Maharashtra’s Biggest Food Festival',
     vision: [
       {title:'Authentic regional flavours',text:'Celebrate the local ingredients, traditional recipes, and food heritage of Maharashtra.'},
