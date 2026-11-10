@@ -8,7 +8,7 @@ const ladachiPromotion=null;
 
 export default function SponsorStrip(){
   const groups=[...new Set(sponsors.map(sponsor=>sponsor.category))].map(category=>({category,logos:sponsors.filter(sponsor=>sponsor.category===category)}));
-  const positions={'Presented By':0,'Associate Partner':1,'Branding Partner':2};
+  const positions={'Presented By':0,'Associate Partner':1,'Promotional Partners':2};
   groups.sort((a,b)=>positions[a.category]-positions[b.category]);
   return <><section className="sponsor-strip" aria-label="KANAGEE sponsors">
     {groups.map(group=><div className={'sponsor-credit sponsor-credit--'+group.logos[0].order} key={group.category}>
