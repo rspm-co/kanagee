@@ -44,7 +44,7 @@ try{
     document=document.replace(/<title>[^<]*<\/title>/,'<title>'+escape(page.title)+'</title>').replace(/<meta name="description"[^>]*>/,'<meta name="description" content="'+escape(page.description)+'"/>');
     const canonical=siteUrl+page.path;
     document=document.replace('</head>','<link rel="canonical" href="'+canonical+'"/>'+(admin?'<meta name="robots" content="noindex,nofollow"/>':'<link rel="alternate" type="text/markdown" href="'+canonical+'index.md"/><script type="application/ld+json">'+JSON.stringify(structuredData(page)).replaceAll('<','\\u003c')+'</script>')+'</head>');
-    if(page.path==='/festival/')document=document.replace('</head>','<link rel="preload" as="image" type="image/webp" href="/festival-thali.webp" imagesrcset="/festival-thali-480w.webp 480w, /festival-thali-800w.webp 800w, /festival-thali.webp 1254w" imagesizes="(max-width: 760px) 88vw, (max-width: 1350px) 43vw, 580px" fetchpriority="high"></head>');
+    if(page.path==='/festival/')document=document.replace('</head>','<link rel="preload" as="image" type="image/webp" href="/festival-thali.webp" imagesrcset="/festival-thali-480w.webp 480w, /festival-thali-640w.webp 640w, /festival-thali-800w.webp 800w, /festival-thali.webp 1254w" imagesizes="(max-width: 760px) 88vw, (max-width: 1350px) 43vw, 580px" fetchpriority="high"></head>');
     if(!admin)document=document.replace('<div id="root"></div>','<div id="root">'+rendering.renderPage(page.path)+'</div>');
     const directory=new URL('.'+page.path,output);await mkdir(directory,{recursive:true});
     await writeFile(new URL('index.html',directory),versionImageUrls(document));

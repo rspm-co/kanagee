@@ -25,7 +25,7 @@ export default function SponsorStrip(){
       <div className="brand-ambassador-identity"><img src="/madhuras-recipe-logo.webp" width="381" height="391" alt="Madhuras Recipe" decoding="async"/><p className="brand-ambassador-name">Madhura’s Recipes</p></div>
       <p>Celebrating Maharashtra’s flavours together at KANAGEE.</p>
     </div>
-    <figure className="brand-ambassador-portrait"><img src="/madhura-bachal-portrait-800w.webp" srcSet="/madhura-bachal-portrait-480w.webp 480w, /madhura-bachal-portrait-800w.webp 800w" sizes="(max-width: 600px) 112px, 180px" width="1279" height="1919" alt="Madhura Bachal, KANAGEE’s brand ambassador" decoding="async"/></figure>
+    <figure className="brand-ambassador-portrait"><img src="/madhura-bachal-portrait-360w.webp" srcSet="/madhura-bachal-portrait-240w.webp 240w, /madhura-bachal-portrait-360w.webp 360w, /madhura-bachal-portrait-480w.webp 480w" sizes="(max-width: 600px) 112px, 148px" width="360" height="540" alt="Madhura Bachal, KANAGEE’s brand ambassador" decoding="async"/></figure>
     {ladachiPromotion&&<div className="ambassador-app-download">
       <span className="eyebrow">TAKE THE TASTE WITH YOU</span>
       {ladachiPromotion==='app'?<><h3>Download the Ladachi Kulfi app</h3>
