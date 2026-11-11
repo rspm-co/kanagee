@@ -6,7 +6,7 @@ export const siteUrl='https://kanagee.com';
 export const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(venueFullAddress);
 export const publicPages=[
   {path:'/register/',title:'KANAGEE — Stall Registration · स्टॉल नोंदणी',description:'Apply for a traditional Maharashtrian food stall at KANAGEE. Read the participation requirements, service-charge information, and application details.'},
-  {path:'/',title:'KANAGEE — Maharashtra Food Festival · Plan Your Visit',description:'Explore Maharashtra’s flavours at KANAGEE from '+event.dates+' at '+event.venue+', Pune. Open 12 PM–9 PM . Book through the Ladachi Kulfi mobile app.'},
+  {path:'/',title:'KANAGEE — Maharashtra Food Festival · Plan Your Visit',description:'Explore Maharashtra’s flavours at KANAGEE from '+event.dates+' at '+event.venue+', Pune. Open 12 PM–9 PM.'+(event.ticketBookingEnabled?' Book through the Ladachi Kulfi mobile app.':'')},
   {path:'/festival/',title:'Explore KANAGEE — Food, Culture & Experiences',description:'Discover regional food, women-led kitchens, the gallery, and confirmed business talks and conferences at KANAGEE in Pune.'},
   {path:'/about/',title:'About KANAGEE — Our Organisers & Vision',description:'KANAGEE is a food and catering brand that also organises food festivals and events, celebrating Maharashtra’s culinary heritage.'},
   {path:'/contact/',title:'Contact KANAGEE — Help & Venue',description:'Call KANAGEE toll-free on 1800 210 3696. Find the festival venue, visiting hours, and official Instagram profile.'},
@@ -19,11 +19,11 @@ export const informationPages={
     {title:'Call us toll-free',text:event.contact.telephone,href:'tel:'+event.contact.tel},
     {title:'Find KANAGEE in Pune',text:venueFullAddress+' · '+event.dates+' · '+event.dailyHours+' ',href:mapsUrl,linkLabel:'Open in Google Maps'},
     {title:'Follow the festival',text:'Official Instagram: @kanagee_',href:event.socials[0].url,linkLabel:'Visit @kanagee_'},
-    {title:'Ticket bookings',text:'Book through the '+event.bookingPlatform+'. For booking help, call the toll-free number above.'},
+    {title:'Ticket bookings',text:event.ticketBookingEnabled?'Book through the '+event.bookingPlatform+'. For booking help, call the toll-free number above.':'Ticket booking is temporarily unavailable.'},
   ]},
   '/terms':{heading:'Website & booking information',intro:'Information for visitors using the KANAGEE website.',sections:[
     {title:'Who organises KANAGEE?',text:'The festival is organised by '+organiser.name+' — '+organiser.group+'.'},
-    {title:'Tickets and payments',text:'Tickets are booked through the Ladachi Kulfi mobile app. This website collects ticket-interest requests and does not process ticket payments. Review ticket prices and admission conditions in the app before paying. Check the cancellation and refund information there as well.'},
+    {title:'Tickets and payments',text:event.ticketBookingEnabled?'Tickets are booked through the Ladachi Kulfi mobile app. This website collects ticket-interest requests and does not process ticket payments. Review ticket prices and admission conditions in the app before paying. Check the cancellation and refund information there as well.':'Ticket booking is temporarily unavailable.'},
     {title:'Programme information',text:'The festival takes place at '+event.venue+', '+event.city+', from '+event.dates+'. It is open from '+event.dailyHours.replace('–',' to ')+'. Business talks and conferences are confirmed. Speakers and session timings will be announced. Experiences marked as planned are subject to confirmation.'},
     {title:'Content use',text:'Search indexing and AI use to answer questions are permitted. AI training use is not permitted, as declared in robots.txt. Logos and photographs remain the property of their respective owners.'},
     {title:'Questions',text:'For festival or booking questions, call '+event.contact.telephone+'.',href:'tel:'+event.contact.tel,linkLabel:'Call KANAGEE'},

@@ -32,6 +32,9 @@ test('expired cookies and brute force login attempts are rejected',async()=>{
 test('admin page opens directly and includes the compiled dashboard',async()=>{
  await runServer({admin},async base=>{
   const r=await fetch(base+'/admin/');assert.equal(r.status,200);const html=await r.text();const asset=html.match(/src="([^"]+\.js)"/)[1];
-  const js=await (await fetch(base+asset)).text();assert.match(js,/Interested visitors/);assert.match(js,/\/api\/admin/);
+  const entry=await (await fetch(base+asset)).text();
+  const chunk=entry.match(/Admin-[A-Za-z0-9_-]+\.js/)?.[0];assert.ok(chunk,'Admin has its own on-demand chunk');
+  const response=await fetch(base+'/assets/'+chunk);assert.equal(response.status,200);
+  const js=await response.text();assert.match(js,/Interested visitors/);assert.match(js,/\/api\/admin/);
  });
 });
