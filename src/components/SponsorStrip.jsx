@@ -1,6 +1,5 @@
 import React from 'react';
 import {sponsors} from '../data/sponsors';
-import {event} from '../config/event';
 import {ArrowUpRight} from 'lucide-react';
 
 // Use 'app' or 'order' to restore a Ladachi Kulfi promotion.
@@ -17,7 +16,7 @@ export default function SponsorStrip(){
     </div>)}
   </section>
   <section className="brand-ambassador" aria-labelledby="ambassador-title">
-    {event.bookingUrl&&<a className="ambassador-book-circle" href={event.bookingUrl}><ArrowUpRight size={24} aria-hidden="true"/><span>Book Tickets</span><small>JOIN THE FESTIVAL</small></a>}
+    <a className="ambassador-book-circle" href="/register/"><ArrowUpRight size={24} aria-hidden="true"/><span>Stall Booking</span><small>JOIN THE FESTIVAL</small></a>
     <div className="ambassador-invitation" lang="mr"><p>महाराष्ट्राचा सर्वात मोठा<br/>खाद्यमहोत्सव</p><small>३६ जिल्हे, ३६ चवी, एकाच छताखाली</small></div>
     <div className="brand-ambassador-copy">
       <span className="eyebrow">OUR BRAND AMBASSADOR</span>
