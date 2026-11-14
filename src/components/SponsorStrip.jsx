@@ -12,7 +12,7 @@ export default function SponsorStrip(){
   return <><section className="sponsor-strip" aria-label="KANAGEE sponsors">
     {groups.map(group=><div className={'sponsor-credit sponsor-credit--'+group.logos[0].order} key={group.category}>
       <span className="eyebrow">{group.category}</span>
-      <div className="sponsor-logo-row">{group.logos.map(sponsor=><div className={'sponsor-logo'+(sponsor.style?' sponsor-logo--'+sponsor.style:'')} key={sponsor.name}><img src={sponsor.logo} width={sponsor.width} height={sponsor.height} alt={sponsor.name} decoding="async"/></div>)}</div>
+      <div className="sponsor-logo-row">{group.logos.map(sponsor=><div className={'sponsor-logo'+(sponsor.style?' sponsor-logo--'+sponsor.style:'')} key={sponsor.name}><img src={sponsor.logo} sizes={sponsor.sizes} srcSet={sponsor.srcSet} width={sponsor.width} height={sponsor.height} alt={sponsor.name} decoding="async"/></div>)}</div>
     </div>)}
   </section>
   <section className="brand-ambassador" aria-labelledby="ambassador-title">
@@ -21,7 +21,7 @@ export default function SponsorStrip(){
     <div className="brand-ambassador-copy">
       <span className="eyebrow">OUR BRAND AMBASSADOR</span>
       <h2 id="ambassador-title">Madhura Bachal</h2>
-      <div className="brand-ambassador-identity"><img src="/madhuras-recipe-logo.webp" width="381" height="391" alt="Madhuras Recipe" decoding="async"/><p className="brand-ambassador-name">Madhura’s Recipes</p></div>
+      <div className="brand-ambassador-identity"><img src="/madhuras-recipe-logo.webp" srcSet="/madhuras-recipe-logo-80w.webp 80w, /madhuras-recipe-logo.webp 381w" sizes="(max-width: 600px) 42px, 54px" width="381" height="391" alt="Madhuras Recipe" decoding="async"/><p className="brand-ambassador-name">Madhura’s Recipes</p></div>
       <p>Celebrating Maharashtra’s flavours together at KANAGEE.</p>
     </div>
     <figure className="brand-ambassador-portrait"><img src="/madhura-bachal-portrait-360w.webp" srcSet="/madhura-bachal-portrait-240w.webp 240w, /madhura-bachal-portrait-360w.webp 360w, /madhura-bachal-portrait-480w.webp 480w" sizes="(max-width: 600px) 112px, 148px" width="360" height="540" alt="Madhura Bachal, KANAGEE’s brand ambassador" decoding="async"/></figure>
