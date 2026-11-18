@@ -30,6 +30,11 @@ export function createApp({pool, origin, staticDirectory, admin}) {
   app.use('/api',(_req,res)=>res.status(404).json({ok:false}));
   app.use(agentRoutes({staticDirectory,origin}));
   app.use('/countdown',(_req,res,next)=>{res.set('X-Robots-Tag','noindex, nofollow, noarchive');next()});
+  // Keep old registration links usable while stall applications are closed.
+  app.get('/register', (_req,res)=>{
+    res.set('Cache-Control','no-store');
+    res.redirect(302,'/');
+  });
   app.use(express.static(staticDirectory,{dotfiles:'deny',index:'index.html',setHeaders(res,file){
     const name=file.replaceAll('\\','/');
     const versioned=/\/assets\/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css)$/.test(name)||/\.[a-f0-9]{12}\.(webp|svg|jpg)$/.test(name);

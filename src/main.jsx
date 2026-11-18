@@ -8,7 +8,6 @@ async function start(){
  const path=window.location.pathname.replace(/\/$/,'');
  let Page,chrome=false;
  if(path==='/admin')Page=(await import('./components/Admin')).default;
- else if(path==='/register'){Page=(await import('./components/StallRegistration')).default;chrome=true}
  else if(path==='/about')Page=(await import('./components/AboutPage')).default;
  else if(path==='/festival')Page=(await import('./components/FestivalPage')).default;
  else if(['/contact','/terms','/privacy'].includes(path)){Page=(await import('./components/InformationPage')).default;chrome=true}
