@@ -2,13 +2,14 @@ import {event} from '../config/event';
 import React from 'react';
 import {sponsors} from '../data/sponsors';
 import {ArrowUpRight} from 'lucide-react';
+import TicketLaunchCelebration from './TicketLaunchCelebration';
 
 // Use 'app' or 'order' to restore a Ladachi Kulfi promotion.
 const ladachiPromotion=null;
 
 export default function SponsorStrip(){
   const groups=[...new Set(sponsors.map(sponsor=>sponsor.category))].map(category=>({category,logos:sponsors.filter(sponsor=>sponsor.category===category)}));
-  const positions={'Presented By':0,'Associate Partner':1,'Promotional Partners':2};
+  const positions={'Presented By':0,'Associate Partner':1,'Promotional Partners':2,'Radio Partner':3};
   groups.sort((a,b)=>positions[a.category]-positions[b.category]);
   return <><section className="sponsor-strip" aria-label="KANAGEE sponsors">
     {groups.map(group=><div className={'sponsor-credit sponsor-credit--'+group.logos[0].order} key={group.category}>
@@ -17,7 +18,7 @@ export default function SponsorStrip(){
     </div>)}
   </section>
   <section className="brand-ambassador" aria-labelledby="ambassador-title">
-    <a className="ambassador-book-circle" href={event.volunteerFormUrl}><ArrowUpRight size={24} aria-hidden="true"/><span>Be a Volunteer</span><small>JOIN THE FESTIVAL</small></a>
+    <a className="ambassador-book-circle" href={event.bookingUrl}><ArrowUpRight size={24} aria-hidden="true"/><span>Book Tickets</span><small>JOIN THE FESTIVAL</small><TicketLaunchCelebration/></a>
     <div className="ambassador-invitation" lang="mr"><p>महाराष्ट्राचा सर्वात मोठा<br/>खाद्यमहोत्सव</p><small>३६ जिल्हे, ३६ चवी, एकाच छताखाली</small></div>
     <div className="brand-ambassador-copy">
       <span className="eyebrow">OUR BRAND AMBASSADOR</span>

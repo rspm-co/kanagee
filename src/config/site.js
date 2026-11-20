@@ -16,7 +16,7 @@ export const informationPages={
   '/contact':{heading:'Contact KANAGEE',intro:'Planning your visit or looking for booking information? Get in touch with the KANAGEE team.',sections:[
     {title:'Call us toll-free',text:event.contact.telephone,href:'tel:'+event.contact.tel},
     {title:'Find KANAGEE in Pune',text:venueFullAddress+' · '+event.dates+' · '+event.dailyHours+' ',href:mapsUrl,linkLabel:'Open in Google Maps'},
-    {title:'Follow the festival',text:'Official Instagram: @kanagee_',href:event.socials[0].url,linkLabel:'Visit @kanagee_'},
+    {title:'Follow the festival',text:'Official Instagram: @kanagee26',href:event.socials[0].url,linkLabel:'Visit @kanagee26'},
     {title:'Ticket bookings',text:event.ticketBookingEnabled?'Book through the '+event.bookingPlatform+'. For booking help, call the toll-free number above.':'Ticket booking is temporarily unavailable.'},
   ]},
   '/terms':{heading:'Website & booking information',intro:'Information for visitors using the KANAGEE website.',sections:[
@@ -62,6 +62,6 @@ export function structuredData(page){
 export function pageMarkdown(page){
   const key=page.path.replace(/\/$/,'');const info=informationPages[key];
   const intro=info?'# '+info.heading+'\n\n'+info.intro+'\n\n'+info.sections.map(s=>'## '+s.title+'\n\n'+s.text+(s.href?'\n\n['+(s.linkLabel||s.text)+']('+s.href+')':'')).join('\n\n'):
-    '# '+page.title+'\n\n'+page.description+'\n\n## Visit\n\n'+event.dates+' · '+event.dailyHours+' (Asia/Kolkata).\n\n'+venueFullAddress+'.\n\n[Google Maps]('+mapsUrl+')\n\n## Tickets\n\nBook through the '+event.bookingPlatform+'. Prices and admission conditions are available in the app. For booking assistance, call 1800 210 3696.\n\n## Organisers and programme\n\nOrganised by '+organiser.name+' — '+organiser.group+'.\n\nBusiness talks and conferences are confirmed. Speakers and session schedules will be announced. The festival celebrates regional food from all 36 districts and rural women-led kitchens.\n\n## Contact\n\n[Toll-free: '+event.contact.telephone+'](tel:'+event.contact.tel+') · [Instagram @kanagee_]('+event.socials[0].url+')';
+    '# '+page.title+'\n\n'+page.description+'\n\n## Visit\n\n'+event.dates+' · '+event.dailyHours+' (Asia/Kolkata).\n\n'+venueFullAddress+'.\n\n[Google Maps]('+mapsUrl+')\n\n## Tickets\n\nBook through the '+event.bookingPlatform+'. Prices and admission conditions are available in the app. For booking assistance, call 1800 210 3696.\n\n## Organisers and programme\n\nOrganised by '+organiser.name+' — '+organiser.group+'.\n\nBusiness talks and conferences are confirmed. Speakers and session schedules will be announced. The festival celebrates regional food from all 36 districts and rural women-led kitchens.\n\n## Contact\n\n[Toll-free: '+event.contact.telephone+'](tel:'+event.contact.tel+') · [Instagram @kanagee26]('+event.socials[0].url+')';
   return intro+'\n\n## Official pages\n\n'+publicPages.map(p=>'- ['+p.title+']('+siteUrl+p.path+')').join('\n')+'\n';
 }

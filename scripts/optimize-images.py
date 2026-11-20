@@ -10,8 +10,8 @@ sources = root / 'source-assets' / 'images'
 sources.mkdir(parents=True, exist_ok=True)
 files = {p.name: p for p in sources.glob('*.png')}
 files.update({p.name: p for p in public.glob('*.png')})
-logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo', 'udyami-maharashtra-logo', 'mea-logo', 'travelyfoodie-logo', 'mla-logo'}
-responsive = {'heritage-thali-cutout', 'experience-thali-cutout', 'seafood-platter', 'festival-thali', 'konkan-fried-fish', 'konkan-fish-curry', 'western-maharashtra-meat-curry', 'western-maharashtra-thali', 'vidarbha-saoji-thali', 'marathwada-dhapate-thali', 'uttar-maharashtra-khandeshi-thali', 'uttar-maharashtra-dal-bati'}
+logos = {'kanagee-logo-transparent', 'ladachi-kulfi-logo', 'rs-papal-logo', 'udyami-maharashtra-logo', 'mea-logo', 'travelyfoodie-logo', 'mla-logo', 'big-fm-logo'}
+responsive = {'maswadi-thali', 'puranpoli-thali', 'umbar-thali', 'mutton-wade-thali', 'non-veg-popati', 'sukat-chatni-thali', 'heritage-thali-cutout', 'experience-thali-cutout', 'seafood-platter', 'festival-thali', 'konkan-fried-fish', 'konkan-fish-curry', 'western-maharashtra-meat-curry', 'western-maharashtra-thali', 'vidarbha-saoji-thali', 'marathwada-dhapate-thali', 'uttar-maharashtra-khandeshi-thali', 'uttar-maharashtra-dal-bati'}
 results = []
 for name, path in sorted(files.items()):
     with Image.open(path) as original:
@@ -19,7 +19,7 @@ for name, path in sorted(files.items()):
         image = image.convert('RGBA' if 'A' in image.getbands() else 'RGB')
         logo_limits = {'travelyfoodie-logo':256, 'mla-logo':256, 'mea-logo':480,
                        'udyami-maharashtra-logo':320, 'ladachi-kulfi-logo':256,
-                       'rs-papal-logo':495}
+                       'rs-papal-logo':495, 'big-fm-logo':320}
         if path.stem in logo_limits:
             limit = logo_limits[path.stem]
             image.thumbnail((limit, limit), Image.Resampling.LANCZOS)
@@ -39,8 +39,8 @@ for name, path in sorted(files.items()):
             assert check.size == image.size, name
             if 'A' in image.getbands():
                 assert check.convert('RGBA').getchannel('A').tobytes() == image.getchannel('A').tobytes(), 'Alpha changed: ' + name
-        if path.stem == 'kanagee-logo-transparent':
-            for width in (128, 256):
+        if path.stem in {'kanagee-logo-transparent', 'big-fm-logo'}:
+            for width in ((128, 256) if path.stem == 'kanagee-logo-transparent' else (160,)):
                 sized = image.resize((width, round(image.height * width / image.width)), Image.Resampling.LANCZOS)
                 sized.save(public / f'{path.stem}-{width}w.webp', **options)
         if path.stem in responsive:

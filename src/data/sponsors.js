@@ -1,4 +1,5 @@
 export const sponsors=[
+  {name:'95 BIG FM',category:'Radio Partner',logo:'/big-fm-logo.webp',width:320,height:318,order:5,style:'radio',sizes:'(max-width: 600px) 88px, 110px',srcSet:'/big-fm-logo-160w.webp 160w, /big-fm-logo.webp 320w'},
   {name:'उद्यमी महाराष्ट्र',category:'Presented By',logo:'/udyami-maharashtra-logo.webp',width:285,height:320,order:1,sizes:'(max-width: 600px) 104px, 146px',srcSet:'/udyami-maharashtra-logo-192w.webp 192w, /udyami-maharashtra-logo.webp 285w'},
   {name:'Travelyfoodie',category:'Promotional Partners',logo:'/travelyfoodie-logo.webp',width:256,height:256,order:2,style:'travelyfoodie',sizes:'(max-width: 600px) 52px, 88px',srcSet:'/travelyfoodie-logo-96w.webp 96w, /travelyfoodie-logo-192w.webp 192w, /travelyfoodie-logo.webp 256w'},
   {name:'Maharashtrian Ladies Association (MLA)',category:'Promotional Partners',logo:'/mla-logo.webp',width:320,height:272,order:4,style:'mla',sizes:'(max-width: 600px) 58px, 96px',srcSet:'/mla-logo-112w.webp 112w, /mla-logo-208w.webp 208w, /mla-logo.webp 256w'},

@@ -597,3 +597,61 @@ header.landing-header{display:grid;grid-template-columns:minmax(0,1fr) auto minm
  .women p,.story p,.vision-points p,.experience-grid p,.faq p,.booking p{font-size:var(--font-body-size)}
  .women .women-support-note{font-size:11px}
 }
+/* Ticket launch takeover. The early clock chooses visibility before first paint. */
+.ticket-launch-screen{display:none;min-height:100svh;padding:40px 20px;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:20px;background:#fffaf0;color:#422720}
+html[data-ticket-launch="pending"] .ticket-launch-screen{display:flex}
+html[data-ticket-launch="pending"] .ticket-launch-content{display:none}
+.ticket-launch-screen>img{width:104px;height:auto}
+.ticket-launch-screen .eyebrow{margin:0;color:#922420;line-height:1.7}
+.ticket-launch-screen h2{font-family:'DM Sans',sans-serif;font-size:clamp(36px,6vw,68px);line-height:1.12;letter-spacing:-2px;margin:0;font-weight:600}
+.ticket-launch-screen h2 em{font-family:Georgia,serif;color:#922420;font-weight:400}
+.ticket-launch-screen>p{margin:0;max-width:440px;line-height:1.7;color:#78675d;font-size:14px}
+.ticket-launch-screen .ticket-launch-date{color:#922420;font-weight:600}
+.ticket-launch-timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,2vw,18px);width:min(100%,590px);margin-block:8px}
+.ticket-launch-timer>div{padding:22px 8px;border:1px solid #e8dfd1;border-radius:16px;background:#fffdf7}
+.ticket-launch-timer strong{display:block;font-size:clamp(32px,7vw,66px);line-height:1.1;font-weight:700;color:#922420;font-variant-numeric:tabular-nums}
+.ticket-launch-timer span{display:block;margin-top:12px;font-size:clamp(10px,1.6vw,13px);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+@media(max-height:650px){.ticket-launch-screen{padding-block:22px;gap:12px}.ticket-launch-screen>img{width:72px}.ticket-launch-timer>div{padding-block:15px}}
+.ambassador-book-circle>.ticket-live-celebration{position:absolute;inset:0;display:block;pointer-events:none;z-index:3;font-size:inherit}
+.ticket-live-callout{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%);padding:10px 15px;border-radius:10px;background:#fffdf7;color:#922420;border:1px solid #d7ab54;box-shadow:0 5px 18px #92242022;white-space:nowrap;font:700 13px 'DM Sans',sans-serif;animation:ticket-live-point .7s ease-in-out 6}
+.ticket-live-callout:after{content:'';position:absolute;top:100%;left:calc(50% - 7px);border:7px solid transparent;border-top-color:#d7ab54}
+.ticket-live-confetti{position:absolute;inset:0;display:block}
+.ticket-live-confetti i{position:absolute;top:15%;left:50%;width:7px;height:11px;background:var(--confetti-colour);border-radius:2px;opacity:0;animation:ticket-live-confetti 2.3s ease-out var(--confetti-delay) 1 both}
+@keyframes ticket-live-point{50%{transform:translate(-50%,6px)}}
+@keyframes ticket-live-confetti{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate(var(--confetti-x),155px) rotate(var(--confetti-turn))}}
+.site-shell[data-motion="paused"] .ticket-live-callout{animation:none}
+.site-shell[data-motion="paused"] .ticket-live-confetti{display:none}
+@media(prefers-reduced-motion:reduce){.ticket-live-confetti{display:none}.ticket-live-callout{animation:none}}
+/* Partner hierarchy with a dedicated radio partner credit. */
+.sponsor-strip{grid-template-columns:minmax(0,1.2fr) minmax(0,1.1fr) minmax(0,.85fr) minmax(0,1fr)}
+.sponsor-strip .sponsor-logo--radio{padding:0;background:transparent}
+.sponsor-strip .sponsor-logo--radio img{width:110px;max-width:100%;height:auto;object-fit:contain}
+@media(max-width:600px){
+ .sponsor-strip{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}
+ .sponsor-strip .sponsor-credit--2{border-left:0;padding-left:0}
+ .sponsor-strip .sponsor-logo--radio img{width:88px}
+}
+.ticket-booking-dialog .popup-event strong{display:flex;align-items:center;justify-content:center;gap:7px}
+.ticket-booking-dialog .ticket-booking-note{font-size:11px;line-height:1.6;color:var(--muted);margin:14px 0 0}
+.ticket-booking-dialog>.interest-submit{margin-top:18px}
+/* One launch celebration, with decorative effects that keep the page clickable. */
+.ticket-launch-party{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden;contain:layout paint}
+.ticket-launch-lights{position:absolute;inset:0;background:radial-gradient(ellipse at 15% 15%,#efc76a44,transparent 45%),radial-gradient(ellipse at 85% 55%,#ee9b5f33,transparent 48%);animation:ticket-party-light 10s ease-out both}
+.ticket-launch-firework{position:absolute;width:1px;height:1px}
+.ticket-launch-firework i{position:absolute;width:4px;height:14px;border-radius:50%;background:var(--burst-colour);box-shadow:0 0 10px var(--burst-colour);opacity:0;animation:ticket-party-burst 2.4s ease-out var(--burst-delay) 1 both}
+.ticket-launch-shower{position:absolute;inset:0}
+.ticket-launch-shower i{position:absolute;top:-20px;width:7px;height:12px;border-radius:2px;opacity:0;animation:ticket-party-fall var(--fall-duration) linear var(--fall-delay) 1 both}
+@keyframes ticket-party-light{0%,100%{opacity:0}20%,70%{opacity:1}}
+@keyframes ticket-party-burst{0%{opacity:0;transform:rotate(var(--ray-angle)) translateY(0) scale(.3)}12%{opacity:.85}65%{opacity:.65}100%{opacity:0;transform:rotate(var(--ray-angle)) translateY(-100px) scale(.2)}}
+@keyframes ticket-party-fall{0%{opacity:0;transform:translate3d(0,0,0) rotate(0)}8%,85%{opacity:.85}100%{opacity:0;transform:translate3d(var(--fall-drift),110vh,0) rotate(var(--fall-turn))}}
+@media(prefers-reduced-motion:reduce){.ticket-launch-party{display:none}}
+@media(max-width:760px){
+ .landing-header{height:84px}
+ .landing-header .header-actions .nav-ticket{display:inline-flex;justify-content:center;align-items:center;min-width:118px;width:auto;height:56px;min-height:56px;padding:14px 12px;gap:8px;border-radius:10px;font-size:12px;line-height:1.2;white-space:nowrap}
+ .landing-header .header-actions .nav-ticket>svg{display:block;width:14px;height:14px}
+ .landing-mobile-ticket{min-height:80px;padding-block:10px max(10px,env(safe-area-inset-bottom));align-items:center}
+ .landing-mobile-ticket .header-actions .nav-ticket{display:inline-flex;justify-content:center;align-items:center;min-width:148px;width:auto;height:56px;min-height:56px;padding:15px 18px;gap:10px;border-radius:10px;font-size:13px;line-height:1.2;white-space:nowrap}
+ .landing-mobile-ticket .header-actions .nav-ticket>svg{display:block;width:15px;height:15px}
+}
+
+body:has(.site-shell[data-motion="paused"]) .ticket-launch-party{display:none}

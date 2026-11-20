@@ -21,7 +21,7 @@ test('every public page has rendered content, one H1, canonical metadata and lin
   assert.ok(html.includes('<title>'+page.title.replaceAll('&','&amp;')+'</title>'));
   const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   const organization=schema['@graph'].find(node=>node['@id']===siteUrl+'/#organization');
-  assert.equal(organization.telephone,'1800 210 3696');assert.deepEqual(organization.sameAs,['https://www.instagram.com/kanagee_/']);
+  assert.equal(organization.telephone,'1800 210 3696');assert.deepEqual(organization.sameAs,['https://www.instagram.com/kanagee26/']);
   assert.ok(schema['@graph'].some(node=>node['@type']==='FoodEvent'));assert.ok(schema['@graph'].some(node=>node['@type']==='WebSite'));
   for(const route of ['/about/','/contact/','/terms/','/privacy/'])assert.ok(html.includes('href="'+route+'"'));
   assert.match(html,/href="tel:18002103696"/);

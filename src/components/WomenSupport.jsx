@@ -11,6 +11,6 @@ export default function WomenSupport(){
       <div className="women-support-card"><TrendingUp className="women-support-growth" size={54} strokeWidth={1.5} aria-hidden="true"/><strong lang="mr">आर्थिक बळ</strong><span>A platform to grow<br/>your food business</span></div>
     </div>
     <p className="women-support-note" lang="mr">स्टॉलसाठी भाडे आकारले जाणार नाही. टेबल, वीज आणि स्वच्छता सेवांचे शुल्क लागू असेल. शुल्काची माहिती लवकरच कळवली जाईल.</p>
-    <a className="women-support-link" href={event.volunteerFormUrl}>Be a Volunteer<ArrowUpRight size={17} aria-hidden="true"/></a>
+    {event.volunteerEnabled&&<a className="women-support-link" href={event.volunteerFormUrl}>Be a Volunteer<ArrowUpRight size={17} aria-hidden="true"/></a>}
   </div>;
 }
