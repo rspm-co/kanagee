@@ -3,6 +3,7 @@ import {ArrowUpRight,CalendarDays,MapPin,Utensils,Users,Heart,Check,Pause,Play} 
 import {event} from '../config/event';
 import TicketInterest from './TicketInterest';
 import SponsorStrip from './SponsorStrip';
+import FestivalProgramme from './FestivalProgramme';
 import {mapsUrl,publicPages} from '../config/site.js';
 
 
@@ -36,7 +37,23 @@ export default function LandingPage({paused=false,footer}){
     <div className="landing-visual"><div className="landing-photo-halo" aria-hidden="true"/><figure className="landing-plate"><img src="/heritage-thali-cutout.webp" srcSet="/heritage-thali-cutout-360w.webp 360w, /heritage-thali-cutout-480w.webp 480w, /heritage-thali-cutout-576w.webp 576w, /heritage-thali-cutout-640w.webp 640w, /heritage-thali-cutout-800w.webp 800w, /heritage-thali-cutout.webp 1254w" sizes="(max-width: 386px) 88vw, (max-width: 760px) 340px, (max-width: 1300px) 43vw, 558px" width="1254" height="1254" alt="A steel thali filled with rice, roti, regional dishes, and sweets" fetchPriority="high" decoding="async"/></figure><div className="landing-photo-note"><span lang="mr">अस्सल चवींचा उत्सव</span><small>ROOTED IN TRADITION</small></div><span className="landing-photo-star" aria-hidden="true">✳</span></div>
    </section>
    <section className="landing-highlights" aria-label="A taste of the festival"><div><Utensils size={21}/><span><strong>36 districts, one table</strong><small>A journey through Maharashtra’s flavours.</small></span></div><div><Users size={21}/><span><strong>Meet the makers</strong><small>Discover the stories and skills behind each dish.</small></span></div><div><Heart size={21}/><span><strong>Bring your favourite people</strong><small>Share good food and make lasting memories.</small></span></div></section>
-   <section className="landing-booking" id="tickets" aria-labelledby="landing-ticket-title"><div className="landing-booking-copy"><span className="eyebrow">PLAN YOUR VISIT</span><h2 id="landing-ticket-title">Four days of food,<br/><em>a world of flavour</em></h2><div className="landing-event-line"><CalendarDays size={19}/><div><strong>{event.dates}</strong><p>Four days to explore and savour.</p></div></div><div className="landing-event-line"><MapPin size={19}/><div><strong>{event.venue}</strong><p>{event.city}, Maharashtra</p></div></div><a href="/festival/#gallery" className="landing-quiet-link">Explore the food gallery<ArrowUpRight size={15}/></a></div>{event.ticketBookingEnabled&&<div className="landing-ticket-panel"><span className="landing-ticket-status">{event.bookingUrl?'LET’S GET YOU THERE':'BOOK THROUGH LADACHI KULFI'}</span><h3>{event.bookingUrl?'Join the celebration':'Your ticket to KANAGEE'}</h3><p>{event.bookingUrl?'Discover regional flavours and food traditions at KANAGEE.':'Book tickets through the Ladachi Kulfi mobile app or register your interest for ticket updates.'}</p>{event.ticketPrice!=null&&<p className="landing-ticket-price">₹{event.ticketPrice}</p>}<TicketAction/><span className="landing-ticket-reassurance"><Check size={14}/>{event.bookingUrl?'Continue to our official booking partner.':'Registering your interest is free. This does not book a ticket.'}</span><small>Open from {event.dailyHours.replace('–',' to ')}.{event.ticketPrice==null?' View ticket prices and admission details in the app.':''}</small></div>}</section>
+   <section className="landing-booking landing-programme-booking" id="tickets" aria-labelledby="landing-ticket-title">
+    <div className="landing-booking-copy">
+     <span className="eyebrow">PLAN YOUR VISIT</span>
+     <h2 id="landing-ticket-title">Events to Experience<br/><em>at KANAGEE</em></h2>
+     <FestivalProgramme/>
+    </div>
+    {event.ticketBookingEnabled&&<aside className="landing-ticket-panel programme-ticket-panel" aria-label="Book KANAGEE tickets">
+     <span className="eyebrow">BE PART OF THE CELEBRATION</span>
+     <h3>Book your<br/>festival tickets</h3>
+     <p>Discover Maharashtra’s regional flavours, live performances, and conversations that bring people together.</p>
+     <div className="programme-booking-detail"><CalendarDays size={18}/><span>{event.dates}<small>{event.dailyHours.replace('–',' to ')}</small></span></div>
+     <div className="programme-booking-detail"><MapPin size={18}/><span>{event.venue}<small>{event.city}, Maharashtra</small></span></div>
+     {event.ticketPrice!=null&&<p className="landing-ticket-price">₹{event.ticketPrice}</p>}
+     <TicketAction/>
+     <span className="landing-ticket-reassurance"><Check size={14}/>Continue to our official booking partner.</span>
+    </aside>}
+   </section>
   </main>
   {footer}
   <div className="landing-mobile-ticket"><div><strong>{event.name} · {event.city}</strong><span>{event.dates}</span></div><div className="header-actions"><TicketAction compact/>{event.volunteerEnabled&&<a className="nav-ticket ticket-spark register-button" href={event.volunteerFormUrl}><span>Be a Volunteer</span><ArrowUpRight size={17} aria-hidden="true"/></a>}</div></div>

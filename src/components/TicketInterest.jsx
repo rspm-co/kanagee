@@ -1,7 +1,8 @@
 import React, {useEffect, useId, useRef} from 'react';
-import {ArrowUpRight, CalendarDays, MapPin, Ticket, X} from 'lucide-react';
+import {ArrowUpRight, CalendarDays, MapPin, X} from 'lucide-react';
 import {event} from '../config/event';
 import {createTicketPopupPolicy} from '../data/ticketPopup.js';
+import FestivalProgramme from './FestivalProgramme';
 
 const popupPolicy = createTicketPopupPolicy();
 
@@ -44,19 +45,21 @@ export default function TicketInterest({label = 'Book tickets', variant = 'defau
     <a href={event.bookingUrl} className={(variant === 'nav' ? 'nav-ticket' : 'button interest-button') + ' ticket-spark'}>
       <span>{label === 'Get ticket updates' ? 'Book tickets' : label}</span><ArrowUpRight size={14}/>
     </a>
-    <dialog ref={dialog} className="interest-dialog ticket-booking-dialog" aria-labelledby={titleId} aria-describedby={descriptionId} onClick={closeOutside}>
+    <dialog ref={dialog} className="interest-dialog ticket-booking-dialog experience-booking-popup" aria-labelledby={titleId} aria-describedby={descriptionId} onClick={closeOutside}>
       <button type="button" className="interest-close" aria-label="Close popup" onClick={close} autoFocus><X size={20}/></button>
-      <span className="interest-icon" aria-hidden="true"><Ticket size={24}/></span>
-      <span className="eyebrow">TICKETS ARE LIVE</span>
-      <h2 id={titleId}>Book your KANAGEE tickets</h2>
-      <p id={descriptionId}>Discover Maharashtra’s regional flavours, food traditions, and the people behind them. Join us in Pune.</p>
-      <div className="popup-event">
-        <strong><CalendarDays size={15} aria-hidden="true"/> {event.dates}</strong>
-        <span><MapPin size={15} aria-hidden="true"/> {event.venue}, {event.city}</span>
-        <small>Open from {event.dailyHours.replace('–', ' to ')}.</small>
+      <span className="eyebrow">PLAN YOUR VISIT</span>
+      <h2 id={titleId}>Events to Experience<br/><em>at KANAGEE</em></h2>
+      <p id={descriptionId}>Choose your day and join the celebration in Pune.</p>
+      <div className="experience-popup-layout">
+        <FestivalProgramme/>
+        <aside className="experience-popup-booking" aria-label="Book festival tickets">
+          <h3>Book your tickets</h3>
+          <p><CalendarDays size={16} aria-hidden="true"/><span>{event.dates}<small>{event.dailyHours.replace('–', ' to ')}</small></span></p>
+          <p><MapPin size={16} aria-hidden="true"/><span>{event.venue}, {event.city}</span></p>
+          <a className="button interest-submit ticket-spark" href={event.bookingUrl}>Book tickets <ArrowUpRight size={18}/></a>
+          <small>View ticket options and prices with our official booking partner.</small>
+        </aside>
       </div>
-      <a className="button interest-submit ticket-spark" href={event.bookingUrl}>Book tickets <ArrowUpRight size={18}/></a>
-      <p className="ticket-booking-note">Continue to our official booking partner for ticket options and prices.</p>
     </dialog>
   </>;
 }
